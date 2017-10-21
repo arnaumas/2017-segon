@@ -1,1 +1,57 @@
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[catalan]{babel}
+\usepackage[alsoload=hep]{siunitx}
+\usepackage{amsmath}
+
+\title{Col·lisions Relativistes}
+\author{Adrià Marin, Arnau Mas}
+\date{17 d'octubre de 2017}
+\begin{document}
+\maketitle
+
+\section{Introducció i Objectius}
+L'objectiu principal d'aquesta pràctica és estudiar la naturalesa de les col·lisions protó-protó. Aquests esdeveniments tenen lloc a un rang de velocitats i energies prou grans perque els efectes relativistes siguin significants. Així es poden fer observacions que contradiuen la mecànica newtoniana, posant de manifest que no és la teoria adequada a aquestes escales. En particular, utilitzant les definicions d'energia relativista i clàssica, hom arriba a resultats significativament diferents, de tal manera que només s'observa conservació de l'energia quan es treballa amb les expressions relativistes. Així mateix, l'angle entre les trajectòries de les partícules sortints que prediu la relativitat és inferior a l'angle recte que prediu la mecànica clàssica, fet que també s'observa en aquesta pràctica.
+
+Com a objectiu secundari, un dels esdeveniments que s'estudiarà és un xoc inelàstic, i s'intentarà determinar la identitat de la partícula neutra que s'emet en la col·lisió. Així mateix, fent servir el principi d'incertesa de Heisenberg, es realitzarà una estimació de l'ordre de magnitud del radi del protó.
+
+Les mesures de les col·lisions es prenen a partir de imatges d'esdeveniments enregistrats en un experiment realitzat al CERN l'any 1974. Les col·lisions es detecten mitjançant una cambra de bombolles. La cambra de bombolles és un tipus de detector de partícules que consta d'un líquid a una temperatura superior al seu punt d'ebullició, però a una pressió rebaixada tal que es manté en l'estat líquid. Quan una partícula carregada atravessa el líquid, en fa pujar la temperatura i el líquid passa a l'estat gasós. Les bombolles de gas que es generen són prou grans per ser fotografiades, i la tra que deixen permet reconstruir la trajectòria de la partícula. El detector està sotmès, a més, a un camp magnètic, de manera que les partícules carregades que l'atravessen segueixen trajectòries corves, el radi de curvatura de les quals depèn del seu moment lineal. En el cas particular de l'experiment del CERN, es bombardejaven protons estacionaris amb feixos de protons.
+   
+\section{Materials i Mètodes}
+Per tal de poder estudiar la dinàmica de les col·lisions cal mesurar el moment lineal de les partícules que hi intervenen. La norma del moment es pot determinar a partir de la curvatura de la trajectòria de la partícula, com a conseqüència de la dinàmica d'una partícula carregada en un camp magnètic. Les direccions de les trajectòries s'estableixen a partir de la mesura dels angles que formen les seves tangents entre elles. Amb aquestes dues mesures n'hi ha prou per determinar els moments lineals ja que les fotografies han estat seleccionades requerint que l'esdeveniment estigui contingut en un pla paral·lel de la fotografia. Amb la informació sobre els moments lineals podem fer l'anàlisi de la variació de l'energia i del moment lineal total del sistema, seguint les equacions relativistes i clàssiques. 
+
+Les dues fotografies que es van analitzar són la número 9 i 16. Dels dos esdeveniments, un es correspon a un xoc elàstic i l'altre a un d'inelàstic. Part de la pràctica consistia a determinar quina fotografia es correspon amb cada esdeveniment. 
+
+Primerament es van realitzar les mesures del radi de curvatura de les trajectòries. Per aquestes mesures es va fer servir un àbac. L'àbac consisteix en una làmina de plàstic transparent amb una sèrie de segments de circumferència de radis creixents impresos al seu damunt. L'àbac es superimposa a la superfície i es determina quin dels segments és el que millor s'ajusta a la trajectòria en qüestió, el radi del qual és el radi de curvatura de la trajectòria. Especialment per a les trajectòries més energètiques ---i per tant amb curvatura inferior---, els radis de curvatura es trobaven al voltant dels \SI{400}{cm}. A aquestes longituds, la precisió de l'àbac és de l'ordre de \SI{10}{cm}. Les mesures es van realitzar trobant les dues marques consecutives tals que la curvatura de la trajectòria es trobava entre les seves curvatures. 
+
+Per a calcular la norma dels moments, tal i com s'ha mencionat abans, es fa servir la següent consideració: quan una partícula de càrrega \( q \) es mou perpendicularment a un camp magnètic uniforme d'intensitat \( B \) es compleix la relació \( p = qBr \) on \( r \) és el radi de curvatura de la trajectòria de la partícula i \( p \) la norma del seu moment. Com que estem tractant amb partícules de la mateixa càrrega---les partícules inicials són dos protons, i per tant, conseqüència de la conservació de la càrrega i del nombre bariònic, les partícules sortints han de ser o bé neutres o bé amb la mateixa càrrega que el protó---, això implica que els moments de les partícules són directament proporcionals als radis de curvatura de les seves trajectòries. El moment lineal de la partícula incident és un paràmetre de l'experiment, i per tant conegut; i el seu radi de curvatura es pot mesurar. Per tant podem determinar els moments de la resta de partícules de la següent manera:
+\begin{equation}
+	p_{i} = \dfrac{p_{1}}{R_{1}}R_{i}
+\end{equation}
+
+Per a fer les mesures dels angles, es van calcar les trajectòries en un paper vegetal i es van dibuixar les tangents a cada una d'elles. Per a facilitar l'anàlisi, es va fixar un sistema de referència amb origen al punt de col·lisió i tal que la trajectòria del protó incident fos tangent al seu eix horitzontal. Així, el moment lineal del protó incident només té component horitzontal. En el paper vegetal, amb un transportador de precisió \SI{1}{º}, es van mesurar els angles compresos entre l'eix horitzontal i les tangents a les trajectòries sortints. Per a minimitzar errors causats per possibles biaixos humans, cada membre del grup va realitzar les mesures tant dels radis de curvatura com dels angles.
+
+Amb aquestes dades recollides es va procedir a calcular la variació d'energia i de moment lineal segons les equacions relativistes i clàssiques. (A partir d'ara, el subíndex 1 denotarà el protó incident, mentre que els subíndexs 2 i 3 denotaran les partícules sortints). L'energia realitivista d'una partícula amb massa \( m \) i velocitat \( v \) ve donada per \( E_{r} = \gamma(v)mc^{2} \), on \( \gamma(v) \) és el factor de Lorentz. Ara bé, l'energia relativista també es pot escriure com 
+\begin{equation}
+  E_{r} = \sqrt{p^{2}c^{2} + m^{2}c^{4}}
+\end{equation}
+on \( c \) és la velocitat de la llum. Així, la variació d'energia relativista en els dos xocs ve donada per:
+\begin{equation}
+  \Delta E_{r} = \sqrt{p_{2}^{2}c^{2} + m^{2}c^{4}} + \sqrt{p_{3}^{2}c^{2} + m^{2}c^{4}} - \sqrt{p_{1}^{2}c^{2} + m^{2}c^{4}} - mc^{2}
+\end{equation}
+L'últim terme es correspon a l'energia en repòs del protó estacionari.
+
+Des del punt de vista clàssic, només ens cal considerar l'energia cinètica \( T \), que, en termes del moment és \( T = \dfrac{p^{2}}{2m} \). Així, la variació d'energia clàssica és
+\begin{equation}
+  \Delta E_{c} = \dfrac{p_{2}^{2}}{2m} + \dfrac{p^{2}_{3}}{2m} - \dfrac{p^{2}_{1}}{2m}
+\end{equation}
+
+Pel que fa a la conservació del moment, aquesta es refereix al moment com a vector, no al seu mòdul. L'expressió d'aquesta llei de conservació és la mateixa en la mecànica relativista i newtoniana ---de fet, en relativitat, la conservació del moment i la conservació de l'energia són ambdues conseqüències de la conservació del quadrivector moment---. Respecte del sistema de referència que hem fixat anteriorment, podem escriure els moments lineals de la següent manera (l'angle \( \theta \) fa referència a l'angle entre l'eix horitzontal i el moment):
+\begin{equation}
+  \mathbf{p_{i}} = p_{i}\cos{\theta_{i}}\mathbf{e}_{x} + p_{i}\sin{\theta_{i}}\mathbf{e}_{y}
+\end{equation}
+
+Dels dos esdeveniments, n'hi ha un que és una col·lisió inelàstica, mentre que l'altre és una col·lisió elàstica. Per detectar la diferència cal tenir en compte que en una col·lisió elàstica l'energia es conserva, mentre que això no és així en el cas inelàstic ---l'energia del sistema es conserva, el que passa és que no tota es troba en l'energia de les partícules sortints, sino que alguna part s'ha dissipat per un altre mecanisme---. Per tant, si en alguna de les dues fotografies el valor de \( \Delta E \) és compatible amb 0, mentre que en l'altra això no és el cas, podrem concloure que la primera es correspon al cas elàstic i la segona al cas inelàstic.
+
+\end{document}
