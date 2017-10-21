@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[catalan]{babel}
-\usepackage[alsoload=hep]{siunitx}
+\usepackage{siunitx}
 \usepackage{amsmath}
 
 \title{Col·lisions Relativistes}
@@ -49,9 +49,22 @@ Des del punt de vista clàssic, només ens cal considerar l'energia cinètica \(
 
 Pel que fa a la conservació del moment, aquesta es refereix al moment com a vector, no al seu mòdul. L'expressió d'aquesta llei de conservació és la mateixa en la mecànica relativista i newtoniana ---de fet, en relativitat, la conservació del moment i la conservació de l'energia són ambdues conseqüències de la conservació del quadrivector moment---. Respecte del sistema de referència que hem fixat anteriorment, podem escriure els moments lineals de la següent manera (l'angle \( \theta \) fa referència a l'angle entre l'eix horitzontal i el moment):
 \begin{equation}
-  \mathbf{p_{i}} = p_{i}\cos{\theta_{i}}\mathbf{e}_{x} + p_{i}\sin{\theta_{i}}\mathbf{e}_{y}
+\mathbf{p}_{i} = p_{i}\cos{\theta_{i}}\mathbf{e}_{x} + p_{i}\sin{\theta_{i}}\mathbf{e}_{y}
 \end{equation}
 
 Dels dos esdeveniments, n'hi ha un que és una col·lisió inelàstica, mentre que l'altre és una col·lisió elàstica. Per detectar la diferència cal tenir en compte que en una col·lisió elàstica l'energia es conserva, mentre que això no és així en el cas inelàstic ---l'energia del sistema es conserva, el que passa és que no tota es troba en l'energia de les partícules sortints, sino que alguna part s'ha dissipat per un altre mecanisme---. Per tant, si en alguna de les dues fotografies el valor de \( \Delta E \) és compatible amb 0, mentre que en l'altra això no és el cas, podrem concloure que la primera es correspon al cas elàstic i la segona al cas inelàstic.
+
+A més, en el xoc inelàstic, la conservació de moment sembla ser violada. Això, però, no pot ser perque el moment es conserva en qualsevol xoc, elàstic o no. L'explicació és que durant la interacció dels protons s'ha creat una tercera partícula, tal que si es considera el seu moment veiem que el moment total del sistema efectivament es conserva. Aquesta partícula ha de ser neutra, perque de no ser així hauria interactuat amb la cambra de bombolles i la seva traça hauria estat visible. Per consideracions de conservació de la càrrega i del nombre bariònic, només hi ha dues possibilitats pel que fa al procés que ha tingut lloc:
+\begin{align*}
+  p^{+} + p^{+} & \rightarrow p^{+} + p^{+} + \pi^{0} \\
+  p^{+} + p^{+} & \rightarrow p^{+} + \pi^{+} + n^{0}
+\end{align*}
+on \( \pi \) denota un pió. Per determinar quina és l'opció que millor s'adiu a les observacions calculem la diferència d'energia en els dos casos, i la que més s'ajusti a zero serà la que es considerarà la millor. En el cas de la segona opció, realment tenim dues possibilitats que es corresponen amb suposar que la partícula 2 és el pió, o bé que ho és la partícula 3, ja que les masses del protó i del pió són diferents. 
+
+Finalment, les mesures del cas elàstic permeten fer una estimació del radi del protó. El principi d'incertesa de Heisenberg lliga les incerteses entre certes parelles de quantitats. Una d'aquestes parelles són el moment i la posició d'una partícula:
+\begin{equation}
+  \Delta r \Delta p \leq \dfrac{h}{2\pi} 
+\end{equation}
+En particular, podem restringir-nos a la direcció vertical. En aquesta direcció coneixem la incertesa en el moment de les partícules sortints. El valor que obtenim per \( \Delta y \) quan substituïm aquesta incertesa en aquesta equació es pot interpretar com una estimació de l'ordre del radi del protó.
 
 \end{document}
