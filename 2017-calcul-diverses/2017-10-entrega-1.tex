@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\usepackage{header}
+
+\title{Lliurament de Càlcul de Diverses Variables i Optimització}
+\author{Arnau Mas}
+\date{26 d'Octubre de 2017}
+
+\begin{document}
+\maketitle
+
+\section*{Problema 3}
+Per veure que \( q \) és una norma observem el següent:
+
+\begin{align*}
+  q(x,y) &= \sqrt{(x+2y)^{2} + (y-2x)^{2}} \\
+  			 &= \sqrt{5x^{2} + 5y^{2}} \\
+				 &= \sqrt{5}\norm{(x,y)}
+\end{align*}
+on \( \norm{\cdot}\) és la norma euclidiana. Per tant ara és evident que \( q \) és una norma.
+
+Considerem \( T \colon \R^{2} \to \R^{2} \) tal que, per tot \( x, y \in \R^{2} \), es té \( q(T(x) - T(y)) = q(x,y) \). Pel que hem vist abans, això equival a dir que \( \sqrt{5}\norm{T(x) - T(y)} = \sqrt{5}\norm{x-y} \), que és a la vegada equivalent a dir que \( T \) és una isometria. Per tant, hem de veure que qualsevol isometria ---entenent per isometria una aplicació que conserva la distància euclidiana--- que fixa l'origen és lineal. Com a observacions prèvies veiem que una isometria conserva la norma i el producte escalar euclidians: 
+\begin{equation*}
+	\norm{T(x)} = \norm{T(x) - T(0)}  = \norm{x-0} = \norm{x}
+\end{equation*}
+
+\begin{equation*}
+	\norm{T(x)} = \norm{x} \implies \norm{T(x)}^{2} = \norm{x}^{2} \implies \inn{T(x)}{T(x)} = \inn{x}{x}
+\end{equation*}
+
+\end{document}
