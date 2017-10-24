@@ -11,20 +11,74 @@
 \section*{Problema 3}
 Per veure que \( q \) és una norma observem el següent:
 
-\begin{align*}
-  q(x,y) &= \sqrt{(x+2y)^{2} + (y-2x)^{2}} \\
-  			 &= \sqrt{5x^{2} + 5y^{2}} \\
-				 &= \sqrt{5}\norm{(x,y)}
-\end{align*}
-on \( \norm{\cdot}\) és la norma euclidiana. Per tant ara és evident que \( q \) és una norma.
+\begin{IEEEeqnarray*}{rCl}
+  q(x,y) &=& \sqrt{(x+2y)^{2} + (y-2x)^{2}} \\
+  			 &=& \sqrt{5x^{2} + 5y^{2}} \\
+				 &=& \norm{5(x,y)}
+\end{IEEEeqnarray*}
+on \( \norm{\cdot}\) és la norma euclidiana. Veiem, doncs, que \( q \) prové d'un producte escalar. Explícitament 
+\[ q(x) = \sqrt{\inn{5x}{5x}}. \]
+Per tant ara és clar que \( q \) és una norma.
 
-Considerem \( T \colon \R^{2} \to \R^{2} \) tal que, per tot \( x, y \in \R^{2} \), es té \( q(T(x) - T(y)) = q(x,y) \). Pel que hem vist abans, això equival a dir que \( \sqrt{5}\norm{T(x) - T(y)} = \sqrt{5}\norm{x-y} \), que és a la vegada equivalent a dir que \( T \) és una isometria. Per tant, hem de veure que qualsevol isometria ---entenent per isometria una aplicació que conserva la distància euclidiana--- que fixa l'origen és lineal. Com a observacions prèvies veiem que una isometria conserva la norma i el producte escalar euclidians: 
+\bigskip
+Considerem \( T \colon \R^{2} \to \R^{2} \) tal que, per tot \( x, y \in \R^{2} \), es té \( q(T(x) - T(y)) = q(x,y) \). Pel que hem vist abans, això equival a dir que \( \sqrt{5}\norm{T(x) - T(y)} = \sqrt{5}\norm{x-y} \), que és a la vegada equivalent a dir que \( T \) és una isometria, és a dir, que conserva la distància euclidiana. Per tant, hem de veure que qualsevol isometria  que fixa l'origen és lineal. Com a observació prèvia veiem que una isometria conserva la norma: 
 \begin{equation*}
 	\norm{T(x)} = \norm{T(x) - T(0)}  = \norm{x-0} = \norm{x}
 \end{equation*}
-
+No només això, sino que també conserva el producte escalar. En efecte, tenim que \( \norm{x - y}^2 = \norm{x}^2 + \norm{y}^2 - 2\inn{x}{y} \). Per tant
 \begin{equation*}
-	\norm{T(x)} = \norm{x} \implies \norm{T(x)}^{2} = \norm{x}^{2} \implies \inn{T(x)}{T(x)} = \inn{x}{x}
+   \inn{x}{y} = \dfrac{1}{2} \left( \norm{x}^2 + \norm{y}^2 - \norm{x - y}^2\right)
 \end{equation*}
+Ara és immediat veure que \( T \) conserva el producte escalar:
+\begin{IEEEeqnarray*}{rCl}
+	\inn{T(x)}{T(y)} & = & \dfrac{1}{2} \left( \norm{T(x)}^2 + \norm{T(y)}^2 - \norm{T(x) - T(y)}^2\right) \\
+	 								 & = & \dfrac{1}{2} \left( \norm{x}^2 + \norm{y}^2 - \norm{x - y}^2 \right) \\ 
+									 & = & \inn{x}{y} 
+\end{IEEEeqnarray*}
+
+Per provar que \( T \) és lineal n'hi ha prou amb que vegem que per tot \( x, y \in \R^{2} \) i \( \lambda, \mu \in \R \) és té \( T(\lambda x + \mu y) = \lambda T(x) + \mu T(y) \). Però això és equivalent a dir que \( \norm{T(\lambda x + \mu y) - \lambda T(x) - \mu T(y)} = 0 \). Calculem, doncs, el quadrat de la norma d'aquest vector, que serà zero si i només si la pròpia norma és zero. Ho fem així per utilitzar la bilinealitat del producte escalar: 
+\begin{IEEEeqnarray*}{rCl}
+	\IEEEeqnarraymulticol{3}{l}{\norm{ T(\lambda x + \mu y) - \lambda T(x) - \mu T(y) }^2 } \\
+  & = & \norm{ T(\lambda x + \mu y) }^2 + \norm{ \lambda T(x) + \mu T(y)}^2 - 2\inn{T(\lambda x + \mu y)}{\lambda T(x) + \mu T(y)} \\
+	& = & \norm{T(\lambda x + \mu y)}^2 + \lambda^2 \norm{T(x)}^2 + \mu^2 \norm{T(y)}^2 + 2\lambda\mu \inn{T(x)}{T(y)} \\
+	& & \negmedspace {}	- 2 \lambda\inn{T(\lambda x + \mu y)}{T(x)} -2 \mu\inn{T(\lambda x + \mu y)}{T(y)} \\
+  & = & \norm{\lambda x + \mu y}^2 + \lambda^2 \norm{x}^2 + \mu^2 \norm{y}^2 + 2\lambda\mu\inn{x}{y} \\ 
+	& & \negmedspace {} - 2\lambda\inn{\lambda x + \mu y}{x} - 2\mu\inn{\lambda x + \mu y}{y} \\ 
+  & = & 2 \norm{\lambda x + \mu y}^2 - 2 \left(\lambda^2 \norm{x}^2 + \mu^2 \norm{y}^2 + 2\lambda\mu\inn{x}{y}\right) \\ 
+  & = & 0
+\end{IEEEeqnarray*}
+
+\bigskip
+Considerem ara una funció \( f \colon \R^2 \to \R^2 \) que compleix que existeix \( C > 0 \) tal que , per tot \( x, y \in \R^d \) es compleix
+\[ \norm{f(x) - f(y)} \leq C\norm{x - y}^2. \]
+Hem de veure que, en aquestes condicions, \( f \) és constant. Com que ens serà útil per al següent apartat, veurem un resultat més general. I és que només ens cal que es compleixi que 
+\[ \norm{f(x) - f(y)} \leq C\norm{x - y}^{1 + \beta} \]
+per algun \( \beta > 0 \) per poder afirmar que \( f \) és constant. Que sigui certa aquesta desigualtat implica que la diferencial de \( f \) és nul·la en qualsevol punt, i per tant que \( f \) és constant ---ja que \( \R^2 \) és òbviament un obert arc-connex---. Verifiquem explícitament que en tot punt \( a \in \R^2 \) és té \( df(a) = 0 \). Segons la definició de diferencial, si és veritat que \( f \) té diferencial nul·la a tot arreu, hem de tenir, per tot \( a \in \R^2 \):
+\begin{equation*}
+  f(a + h) = f(a) + o(\norm{h}),
+\end{equation*}
+o el que és el mateix
+\begin{equation*}
+  \lim_{\norm{h} \to 0}{\dfrac{\norm{f(a+h) - f(a)}}{\norm{h}}} = 0.
+\end{equation*}
+Per hipòtesi, tenim que \( 0 \leq \norm{f(a + h) -f(a)} \leq C \norm{h}^{1 + \beta} \). A més, \( C \norm{h}^{1+\beta} \to 0 \) quan \( \norm{h} \to 0 \). Per tant,
+\[ \lim_{\norm{h} \to 0}{\norm{f(a + h) - f(a)}} = \lim_{\norm{h} \to 0}{C \norm{h}^{1 + \beta}} = 0. \]
+I aleshores el límit que volíem avaluar es redueix a
+\[ \lim_{\norm{h} \to 0}{\dfrac{C \norm{h}^{1 + \beta}}{\norm{h}}} = \lim_{\norm{h} \to 0}{C \norm{h}^{\beta}} = 0. \]
+Per tant, efectivament, \( f \) té diferencial nul·la a tot arreu i per tant és constant.
+
+\bigskip
+Pel que fa a l'últim apartat, podem considerar tres casos: \( \alpha > 1 \), \( 0 < \alpha < 1 \) i \( \alpha < 0 \)
+Si \( \alpha = 0 \), aleshores no pot existir \( f \colon \R^2 \to \R^2 \) bijectiva que compleixi la condició. En efecte, si \( f \) és bijectiva en particular és exhaustiva. Per tant el 0 té preimatge. Però aleshores tenim que la norma de qualsevol imatge és 1, i per tant qualsevol punt amb norma diferent de 1 no té preimatge: una contradicció.
+
+El cas \( \alpha > 1 \) ja l'hem resolt a l'apartat anterior. Si \( \alpha > 1 \), podem posar \( \alpha = 1 + \beta \) amb \( \beta > 0 \). Però aleshores tenim, per tot \( x, y \in \R^2 \)
+\[ \norm{f(x) - f(y)} = \norm{x - y}^{1 + \beta} \leq \norm{x - y}^{1 + (1+\beta)} \]
+i per tant \( f \) ha de ser constant, per la qual cosa no pot ser bijectiva. 
+
+Suposem ara que \( f \) és bijectiva i compleix la condició de l'enunciat amb \( 0 < \alpha < 1 \). Aleshores \( f \) té una inversa, també bijectiva, i tenim, per tot \( x, y \in \R^2 \)
+\[ \norm{x - y} = \norm{f^{-1}(x) - f^{-1}(y)}^{\alpha} \]
+i per tant
+\[ \norm{x - y}^{1 / \alpha} = \norm{f^{-1}(x) - f^{-1}(y)}. \]
+Però \( \dfrac{1}{\alpha} > 1 \), i per tant, tal i com hem raonat abans, \( f^{-1} \) ha de ser constant: una contradicció.
 
 \end{document}
