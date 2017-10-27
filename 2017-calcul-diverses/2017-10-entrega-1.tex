@@ -17,11 +17,13 @@ Per veure que \( q \) és una norma observem el següent:
 				 &=& \norm{5(x,y)}
 \end{IEEEeqnarray*}
 on \( \norm{\cdot}\) és la norma euclidiana. Veiem, doncs, que \( q \) prové d'un producte escalar. Explícitament 
-\[ q(x) = \sqrt{\inn{5x}{5x}}. \]
+\[ q(x) = \sqrt{\inn{5(x,y)}{5(x,y)}}. \]
 Per tant ara és clar que \( q \) és una norma.
 
+Pel que fa a les boles que determina \( q \), és clar que són les boles usuals que determina la norma euclidiana, escalades per un factor \( \sqrt{5} \). És a dir, la bola centrada en l'origen de radi \( r \) que determina \( q \) és la bola centrada en l'origen de radi \( \sqrt{5}r \) que determina la norma euclidiana usual.
+
 \bigskip
-Considerem \( T \colon \R^{2} \to \R^{2} \) tal que, per tot \( x, y \in \R^{2} \), es té \( q(T(x) - T(y)) = q(x,y) \). Pel que hem vist abans, això equival a dir que \( \sqrt{5}\norm{T(x) - T(y)} = \sqrt{5}\norm{x-y} \), que és a la vegada equivalent a dir que \( T \) és una isometria, és a dir, que conserva la distància euclidiana. Per tant, hem de veure que qualsevol isometria  que fixa l'origen és lineal. Com a observació prèvia veiem que una isometria conserva la norma: 
+Considerem \( T \colon \R^{2} \to \R^{2} \) tal que, per tot \( x, y \in \R^{2} \), es té \( q(T(x) - T(y)) = q(x,y) \) i tal que \( T(0) = 0 \). Pel que hem vist abans, això equival a dir que \( \sqrt{5}\norm{T(x) - T(y)} = \sqrt{5}\norm{x-y} \), que és a la vegada equivalent a dir que \( T \) és una isometria, és a dir, que conserva la distància euclidiana. Per tant, hem de veure que qualsevol isometria  que fixa l'origen és lineal. Com a observació prèvia veiem que una isometria conserva la norma: 
 \begin{equation*}
 	\norm{T(x)} = \norm{T(x) - T(0)}  = \norm{x-0} = \norm{x}
 \end{equation*}
@@ -49,11 +51,11 @@ Per provar que \( T \) és lineal n'hi ha prou amb que vegem que per tot \( x, y
 \end{IEEEeqnarray*}
 
 \bigskip
-Considerem ara una funció \( f \colon \R^2 \to \R^2 \) que compleix que existeix \( C > 0 \) tal que , per tot \( x, y \in \R^d \) es compleix
+Considerem ara una funció \( f \colon \R^d \to \R^d \) que compleix que existeix \( C > 0 \) tal que, per tot \( x, y \in \R^d \) es compleix
 \[ \norm{f(x) - f(y)} \leq C\norm{x - y}^2. \]
 Hem de veure que, en aquestes condicions, \( f \) és constant. Com que ens serà útil per al següent apartat, veurem un resultat més general. I és que només ens cal que es compleixi que 
 \[ \norm{f(x) - f(y)} \leq C\norm{x - y}^{1 + \beta} \]
-per algun \( \beta > 0 \) per poder afirmar que \( f \) és constant. Que sigui certa aquesta desigualtat implica que la diferencial de \( f \) és nul·la en qualsevol punt, i per tant que \( f \) és constant ---ja que \( \R^2 \) és òbviament un obert arc-connex---. Verifiquem explícitament que en tot punt \( a \in \R^2 \) és té \( df(a) = 0 \). Segons la definició de diferencial, si és veritat que \( f \) té diferencial nul·la a tot arreu, hem de tenir, per tot \( a \in \R^2 \):
+per algun \( \beta > 0 \) per poder afirmar que \( f \) és constant. Que sigui certa aquesta desigualtat implica que la diferencial de \( f \) és nul·la en qualsevol punt, i per tant que \( f \) és constant ---ja que \( \R^d \) és òbviament un obert arc-connex---. Verifiquem explícitament que en tot punt \( a \in \R^d \) és té \( df(a) = 0 \). Segons la definició de diferencial, si és veritat que \( f \) té diferencial nul·la a tot arreu, hem de tenir, per tot \( a \in \R^d \):
 \begin{equation*}
   f(a + h) = f(a) + o(\norm{h}),
 \end{equation*}
@@ -68,17 +70,56 @@ I aleshores el límit que volíem avaluar es redueix a
 Per tant, efectivament, \( f \) té diferencial nul·la a tot arreu i per tant és constant.
 
 \bigskip
-Pel que fa a l'últim apartat, podem considerar tres casos: \( \alpha > 1 \), \( 0 < \alpha < 1 \) i \( \alpha < 0 \)
-Si \( \alpha = 0 \), aleshores no pot existir \( f \colon \R^2 \to \R^2 \) bijectiva que compleixi la condició. En efecte, si \( f \) és bijectiva en particular és exhaustiva. Per tant el 0 té preimatge. Però aleshores tenim que la norma de qualsevol imatge és 1, i per tant qualsevol punt amb norma diferent de 1 no té preimatge: una contradicció.
+Pel que fa a l'últim apartat, podem considerar tres casos: \( \alpha > 1 \), \( 0 < \alpha < 1 \) i \( \alpha = 0 \)
+Si \( \alpha = 0 \), aleshores no pot existir \( f \colon \R^d \to \R^d \) bijectiva que compleixi la condició. En efecte, si \( f \) és bijectiva en particular és exhaustiva. Per tant el 0 té una preimatge, \( x_0 \). Però aleshores tenim que la norma de qualsevol imatge és 1. Això és perque per tot \( x \in \R^d \) tenim \( \norm{f(x) - f(x_0)} = \norm{f(x)} = \norm{x - x_0}^0	= 1 \). I per tant qualsevol punt amb norma diferent de 1 no té preimatge: una contradicció.
 
-El cas \( \alpha > 1 \) ja l'hem resolt a l'apartat anterior. Si \( \alpha > 1 \), podem posar \( \alpha = 1 + \beta \) amb \( \beta > 0 \). Però aleshores tenim, per tot \( x, y \in \R^2 \)
+El cas \( \alpha > 1 \) ja l'hem resolt a l'apartat anterior. Si \( \alpha > 1 \), podem posar \( \alpha = 1 + \beta \) amb \( \beta > 0 \). Però aleshores tenim, per tot \( x, y \in \R^d \)
 \[ \norm{f(x) - f(y)} = \norm{x - y}^{1 + \beta} \leq \norm{x - y}^{1 + (1+\beta)} \]
-i per tant \( f \) ha de ser constant, per la qual cosa no pot ser bijectiva. 
+i per tant \( f \) ha de ser constant, per l'apartat anterior, per la qual cosa no pot ser bijectiva. 
 
-Suposem ara que \( f \) és bijectiva i compleix la condició de l'enunciat amb \( 0 < \alpha < 1 \). Aleshores \( f \) té una inversa, també bijectiva, i tenim, per tot \( x, y \in \R^2 \)
+Suposem ara que \( f \) és bijectiva i compleix la condició de l'enunciat amb \( 0 < \alpha < 1 \). Aleshores \( f \) té una inversa, també bijectiva, i tenim, per tot \( x, y \in \R^d \)
 \[ \norm{x - y} = \norm{f^{-1}(x) - f^{-1}(y)}^{\alpha} \]
 i per tant
 \[ \norm{x - y}^{1 / \alpha} = \norm{f^{-1}(x) - f^{-1}(y)}. \]
 Però \( \dfrac{1}{\alpha} > 1 \), i per tant, tal i com hem raonat abans, \( f^{-1} \) ha de ser constant: una contradicció.
+
+\section*{Problema 6}
+Se'ns demana de demostrar que la funció \( f \colon \R^2 \to \R \) amb \( f(x,y) = x^2y +2xy + 12y^2 \) té un màxim i mínim absoluts en el conjunt
+\[ A = \left\{ (x,y) \in \R^2 \colon x^2 + 2x + 16y^2 \leq 8 \right\} \]
+i calcular-los. 
+
+Observem que \( f \) és continua, ja que és la combinació lineal de tres funcions continues ---el producte és continu, així com ho és elevar al quadrat---. El conjunt \( A \) és un compacte. Que és tancat és clar, perque està donat per una desigualtat no estricta sobre una funció continua. Per veure que és fitat observem que si \( (x,y) \in A \) aleshores
+\[ (x+1)^2 + 16y^2 \leq 9 \]
+i per tant \(  (x+1)^2 + y^2 \leq 9 \). És a dir, que \( A \) està contingut en la bola centrada en \( (-1,0) \) de radi 3, i per tant és fitat. 
+
+Com que \( A \) és compacte i \( f \) continua, pel teorema de Weierstrass, concloem que \( f \) té almenys un màxim i un mínim absoluts en \( A \). Com que \( f \) no només és continua sino que també es diferenciable sabem que si \( f \) té un màxim o mínim absolut en un punt d'\( A \), aleshores aquest punt és un mínim o màxim relatiu o bé de la frontera d' \( A \). Per tant, en el primer cas, la diferencial de \( f \) ---que com que és escalar ve donada pel seu gradient--- és nul·la en aquest punt. Calculem el gradient de \( f \) 
+\begin{IEEEeqnarray*}{rCl}
+  \nabla f(x,y) & = & \dfrac{\partial f}{\partial x}(x,y)e_1 + \dfrac{\partial f}{\partial y}(x,y)e_2 \\
+ 								& = & (2xy + 2y)e_1 + (x^2 + 2x +24y)e_2 
+\end{IEEEeqnarray*}
+on \( e_1 \) i \( e_2 \) són els vectors de la base canònica de \( \R^2 \).
+
+Si imposem que el gradient sigui nul, obtenim dues equacions, \( y(x+1) = 0 \) i \( x^2 +2x +24y = 0 \). De la primera concloem que \( y = 0 \) o \( x = -1 \). En el primer cas, si substituim a la segona equació trobem que \( x^2 + 2x = 0 \) i per tant que \( x = 0 \) o \( x = -2 \). En el segon, quan substituïm trobem que l'única solució és \( y = 1/24 \). Així doncs, els únics punts crítics a l'interior d'\( A \) són \( (0,0) \), \( (-2,0) \) i \( (-1, 1/24) \).
+
+Cal considerar també la frontera d'\( A \). Aquesta és el conjunt de punts que compleixen \( x^2 + 2x + 16y^2 \). Equivalentment, són els punts que compleixen 
+\[ \left(\dfrac{x+1}{3}\right)^2 + \left(\dfrac{4y}{3}\right)^2 = 1.  \]
+Aquesta és l'equació d'una el·lipse amb centre a \( (-1,0) \) i semieixos 3 i 3/4. La podem parametritzar per un arc regular \( \gamma \) definit com segueix:
+\begin{IEEEeqnarray*}{rCl}
+	\gamma \colon [0, 2\pi) & \to & \R^2 \\ 
+	t & \mapsto & \left(-1 + 3\cos{t}, \dfrac{3}{4}\sin{t}\right)  
+\end{IEEEeqnarray*}
+Així, la restricció de \( f \) a la frontera d'\( A \) la podem pensar com la funció d'una variable \( f \circ \gamma \). És una funció derivable ja que és la composició de funcions derivables. Podem calcular-ne explícitament l'expressió i obtenim
+\[ (f \circ \gamma)(t) = \dfrac{27}{4}\left((\sin{t})^2 - (\sin{t})^3	+ \dfrac{8}{9}\sin{t}\right).  \]
+I si derivem trobem
+\begin{IEEEeqnarray*}{rCl}
+	\dfrac{d}{d t}(f \circ \gamma)(t) & = & \dfrac{27}{4}\cos{t}\left(2\sin{t} - 3(\sin{t})^2 + \dfrac{8}{9}\right) \\
+	 																	& = & - \dfrac{27}{4}\cos{t} \left(\sin{t} - \dfrac{3 - \sqrt{33}}{9}\right)  \left(\sin{t} - \dfrac{3 + \sqrt{33}}{9}\right)
+\end{IEEEeqnarray*}
+Si busquem les arrels d'aquesta expressió trobem que són \( \pi/2 \) i \( 3\pi/2 \), que anul·len el primer factor. Pel que fa al tercer factor, observem que \( 0 < (3 + \sqrt{33})/9 < 1 \), per tant té sentit parlar del seu arcsinus, que és un angle menor que \( \pi/2 \). El seu suplementari també anul·la el tercer factor. Pel tercer factor, hem de tenir en compte que \( -1 < (3 - \sqrt{33})/9 < 0 \) i per tant el seu arcsinus és un angle comprès entre \( \pi \) i \( 2\pi \), així com el seu suplementari. Així doncs, els punts crítics de \( f \) a la frontera d'\( A \) són les imatges per \( \gamma \) d'aquests sis valors.
+
+Si calculem les imatges per \( f \) d'aquests punts i dels tres punts crítics a l'interior d'\( A \) veiem que el punt amb la major imatge és \( \gamma (3-\pi/2) = (-1, -4/3) \). Per tant, \( f \) té un màxim absolut, de valor \( 14/2 \) en aquest punt. Els dos punts amb la imatge per \( f \) més petita són \( \gamma(\arcsin{(3 - \sqrt{33})/9}) \approx (1{,}86\ , -0{,}41) \) i \(  \gamma(\arcsin{(3 - \sqrt{33})/9}) \approx (-3{,}86\ , -0{,}41) \). La funció arcsinus la considerem amb imatge a \( (0, 2\pi) \) i no a \( (-\pi, \pi) \) com és habitual. Així, \( f \) té un mínim absolut en aquests dos punts de valor aproximadament \( -1{,}01 \).
+
+
+
 
 \end{document}
