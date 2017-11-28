@@ -1,0 +1,70 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{header}
+\usepackage{siunitx}
+
+\title{Sonòmetre: Qüestions prèvies}
+\author{C4: Adrià Marín, Arnau Mas}
+\date{20 de Novembre 2017}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+	\item \textbf{Definiu ona estacionària.} \\
+	\indent Una ona estacionària és l'ona que resulta de la superposició de dues ones amb la mateixa freqüència i amplitud, però amb velocitats oposades. L'ona estacionària que apareix te la característica que a certs punts, anomenats nodes, l'amplitud és zero per a qualsevol instant de temps.
+	\item \textbf{Definiu el procediment per determinar la longitud d'ona a partir de la posició dels nodes i antinodes} \\
+	\indent En el cas de que l'ona estacionària tingui un node a cada extrem de la corda, observem que la longitud d'ona, \( \lambda \), ha de ser tal que la longitud de la corda, \( L \), pugui contenir un nombre enter, \( n \), de semi-longituds d'ona:
+\begin{equation*}
+  L = \dfrac{n\lambda}{2}.
+\end{equation*}
+I per tant deduïm
+\begin{equation*}
+  \lambda = \dfrac{2L}{n}.
+\end{equation*}
+Si denotem per \( N \) el nombre de nodes, observem que sempre en tenim dos per les condicions inicials i n'afegim un per cada semi-longitud d'ona. Per tant
+\begin{equation*}
+  \lambda = \dfrac{2L}{N-1}.
+\end{equation*}
+
+Quan hi ha un node a només un dels extrems de la corda, a l'altre hi tenim un antinode. Ara ha de passar que la longitud de la corda sigui un múltiple senar d'un quart de longitud d'ona ---cada vegada que afegim un node, afegim mitja longitud d'ona, no només un quart---. Així
+\begin{equation*}
+  L = \dfrac{(2n + 1)\lambda}{4} = \dfrac{n\lambda}{2} + \dfrac{\lambda}{4}.
+\end{equation*}
+Observem que en aquest cas \( n \) és el nombre de nodes menys u, ja que les condicions inicials ens donen que hi ha un node a l'harmònic fonamental. Així doncs
+\begin{equation*}
+  \lambda = \dfrac{4L}{2N - 1}
+\end{equation*}
+amb \( N \) el nombre de nodes.
+
+Finalment tenim el cas en que ambdós extrems són lliures i per tant tenen antinodes. En aquest cas tenim sempre almenys un node, i cada node que afegim fa que la longitud de la corda contingui mitja longitud d'ona adicional. En l'harmònic fonamental hi ha un únic node i la longitud d'ona és dues vegades la longitud de la corda. Com abans deduïm
+\begin{equation*}
+  L = \dfrac{n\lambda}{2}.
+\end{equation*}
+Però pel que hem obsevat abans, ara el nobre de nodes i de mitges longituds d'ones és el mateix, així que podem escriure
+\begin{equation*}
+  \lambda = \dfrac{2L}{N}.
+\end{equation*}
+
+\item \textbf{Demostreu que la velocitat de propagació d'una ona en una corda ve donada per l'expressió (3) del guió.} \\
+\indent Considerem una corda de densitat de massa lineal \( \mu \) i sotmesa a una tensió horitzontal constant \( T \). Sobre un tros de corda de longitud \( dx = x_2 - x_1 \) i per tant de massa \( dm = \mu dx \). Si el tros de corda està deformat de tal manera que la tensió actua amb angles \( \theta_1 \) i \( \theta_2 \) respecte de l'horitzontal a cada extrem i negligint la força de la gravetat podem escriure:
+\begin{equation*}
+dm\dfrac{\partial^2 y}{\partial t^2} = T(\sin{\theta_2} - \sin{\theta_1}). 
+\end{equation*}
+Si les oscil·lacions de la corda són prou petites, podem aproximar el sinus per la tangent, que és la derivada \( dy/dx \). Així doncs tenim
+\begin{equation*}
+ \dfrac{\partial^2 y}{\partial t^2}  = \dfrac{T}{\mu dx} \left( \dfrac{\partial y}{\partial x}(x_2) - \dfrac{\partial y}{\partial x}(x_1) \right).
+\end{equation*}
+En el límit quan \( dx \to 0 \) obtenim la següent equació, que és una equació d'ones:
+\begin{equation}
+  \dfrac{\partial^2 y}{\partial t^2} = \dfrac{T}{\mu} \left( \dfrac{\partial^2 y}{\partial x^2} \right).
+\end{equation}
+És a dir, acabem de demostrar que la posició vertical d'una corda de densitat lineal constant sotmesa a una tensió constant satisfà l'equació d'ones. El coeficient que acompanya la segona parcial respecte de la posició és el quadrat de la velocitat de propagació de les ones, per tant les ones mecàniques en una corda es propaguen a velocitat \( \sqrt{T/\mu} \). 
+
+\item \textbf{Calculeu els valors esperats de les freqüències i de les posicions dels nodes i antinodes en totes les condicions de l'experiment.} \\
+	\indent En el primer experiment, es treballa amb una corda de densitat \SI{0,78d-3}{kg.m^{-3}}, longitud \SI{0,6}{m} i sotmesa a una tensió de \SI{19,62}{N}. Això dóna una freqüència fonamental de \SI{132}{Hz}. En aquest primer harmònic hi ha dos nodes a \SI{0}{cm} i \SI{60}{cm}, i un ventre a la meitat, a \SI{30}{cm}. Les freqüències dels següents harmònics són \SI{264}{Hz}, \SI{396}{Hz} i \SI{528}{Hz}. Els nodes es trobaran espaiats uniformement entre \SI{0}{cm} i \SI{60}{cm} a intervals de \SI{30}{cm}, \SI{20}{cm} i \SI{15}{cm}. En canvi, els antinodes es trobaran en els punts mitjos entre els node. És a dir, espaiats pels mateixos intervals anteriors però començant a \SI{15}{cm}, \SI{10}{cm} i \SI{7,5}{cm}, per a cada harmònic.
+
+Pel segon experiment, la mateixa corda se sotmet a tensions que són \( 1/2 \), \( 3/2 \), \( 4/2 \) i \( 5/2 \) de la tensió anterior. Això vol dir que les freqüències de l'apartat anterior s'han de dividir totes per un factor de \( \sqrt{2} \), \( \sqrt{2/3} \), \( 1/\sqrt{2} \) i \( \sqrt{2/5} \). En canvi, les posicions dels nodes i antinodes no es veuen afectades perque no depenen de la freqüència fonamental.
+
+\end{enumerate}
+
+\end{document}
