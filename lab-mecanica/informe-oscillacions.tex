@@ -5,13 +5,13 @@
 \usepackage[font={footnotesize,sf}]{caption}
 
 \usepackage[colorlinks=true]{hyperref}
-
+\usepackage[top=3cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{siunitx}
 \sisetup{allow-number-unit-breaks, prefixes-as-symbols=false, output-decimal-marker={,}, list-final-separator={and}, range-phrase={--}, range-units=brackets}
 
 \title{\textsf{\textbf{Pràctica 2: Oscil·lacions}}}
-\author{Arnau Mas}
-\date{9 de Gener 2018}
+\author{\textsf{Arnau Mas}}
+\date{\textsf{9 de Gener 2018}}
 
 \begin{document}
 \maketitle
@@ -106,16 +106,16 @@ Per a trobar el desfasament entre el motor i la massa, \( \theta \), es mesura l
 \end{equation}
 on \( T \) és el període de l'oscil·lació ---és el mateix per a la massa que per al motor---, que es mesura igual com en el cas amortit.  
 
-\section{Resultats} \label{sec:resultats}
-\subsection{Oscil·lador amortit}
-En primer lloc es van pendre mesures per determinar els paràmetres del sistema. La freqüència pròpia del sistema és \( \omega_0 = \data{4,66}{0,05}{rad.s^{-1}} \). El període d'oscil·lació del sistema en les condicions de l'experiment és \( T = \data{1,414}{0,007}{s} \) i per tant amb una freqüència de \( \omega = \data{4,46}{0,03}{rad.s^{-1}} \). 
-
 \begin{figure}[htb]
 	\centering
 	\includegraphics[scale=0.6]{amplitud.png}
 	\caption{Amplitud màxima en funció del temps. Es pot apreciar molt clarament la caiguda exponencial de l'amplitud amb el temps.}
 	\label{fig:amplitud en funcio del temps}
 \end{figure}
+
+\section{Resultats} \label{sec:resultats}
+\subsection{Oscil·lador amortit}
+En primer lloc es van pendre mesures per determinar els paràmetres del sistema. La freqüència pròpia del sistema és \( \omega_0 = \data{4,66}{0,05}{rad.s^{-1}} \). El període d'oscil·lació del sistema en les condicions de l'experiment és \( T = \data{1,414}{0,007}{s} \) i per tant amb una freqüència de \( \omega = \data{4,46}{0,03}{rad.s^{-1}} \). 
 
 \begin{figure}[htb]
   \centering

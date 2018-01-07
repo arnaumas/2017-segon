@@ -1,9 +1,11 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{header}
 
+% \numberwithin{equation}{section}
+
 \title{\textbf{\sffamily{Segon Lliurament de Càlcul de Diverses Variables i Optimització}}}
-\author{Arnau Mas}
-\date{8 de Gener de 2018}
+\author{\textsf{Arnau Mas}}
+\date{\textsf{8 de Gener de 2018}}
 
 \begin{document}
 \selectlanguage{catalan}
@@ -68,6 +70,42 @@ Sabem també que \( f = 0 \) restringida als punts del pla \( x = 0 \). Traduït
 i per tant la solució que busquem és \( g(u,v,w) = \frac{1}{8}uw\left((u+w)^2 - v^2\right) \).
 
 Per veure que és única considerem dues potencials solucions, \( g_1 \) i \( g_2 \) i la seva diferència \( h = g_1 -g_2 \). Per linealitat tenim que \( h \) compleix \( h_{uv} = 0 \). Això ens dóna que \( h = A + B	\) amb \( A_u = B_v = 0 \). La funció \( h \) clarament també compleix les condicions inicials que compleixen \( g_1 \) i \( g_2 \). Així tenim, que en el pla \( u = 0 \), \( h_v(0,v,w) = A_v(v,w) = 0 \), per tant que \( A \) només depèn de \( w \). Per la segona condició, sabem que \( h \) és nul·la restringida als punts que compleixen \( v = u + w \). És a dir \( h(u,u+w,w) = 0 \) per tot \( u,w \in \R \). Però com que \( h \) no depèn de \( v \) concloem que \( h \) és idènticament zero i per tant \( g_1 = g_2 \), com volíem.
+
+\section*{Problema 2}
+
+
+
+\section*{Problema 3}
+Sen's demana calcular el volum de la intersecció entre l'interior de l'el·lipsoide d'equació \[ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1 \] i el semiespai donat per \[ Ax + By + Cz \leq D . \] Observem que podem fer un canvi de coordenades per a reduir al problema al càlcul del volum d'un casquet esfèric. Concretament el canvi que fem servir és el definit per 
+\begin{align*}
+	H \colon \R^3 & \to \R^3 \\
+	(x,y,z) & \mapsto \left(\dfrac{x}{a},\dfrac{y}{b},\dfrac{z}{c}\right).
+\end{align*}
+Si denotem les noves coordenades per \( (u,v,w) \) tenim que ara l'el·lipsoide té equació \( u^2 + v^2 + w^2 = 1 \) i ja no és un el·lipsoide sino que és una esfera. L'equació del semiespai es transforma en \( Aau + Bbu + Ccw \leq D \). És clar que \( H \) és una bijecció lineal i per tant un difeomorfisme. Calcular-ne la inversa és immediat i tenim que el jacobiá de \( H^{-1} \) és \( J_{H^{-1}}=abc \). Així doncs, pel teorema del canvi de variable tenim que si denotem per \( A \) el conjunt del qual en volem calcular el volum:
+\begin{equation}
+	m(A) = \int_A \mathbf{1}_A = \int_{H(A)} \mathbf{1}_{H(A)} \abs{J_{H^{-1}}} = \abs{abc} \int_{H(A)} \mathbf{1}_{H(A)} = \abs{abc}m(H(A)). \label{eq:canvi de variables per simplificar}
+\end{equation}
+Podem suposar, sense pèrdua de generalitat, que \( a \), \( b \) i \( c \) són reals positius.
+
+La regió de la qual hem de calcular el volum ara, \( H(A) \) és un casquet esfèric. El volum, \( V \), d'un casquet esfèric d'una esfera de radi \( r \) està donat per
+\begin{equation}
+	V = \dfrac{\pi h^2}{3}(3r - h), \label{eq:volum d'un casquet}
+\end{equation}
+on \( h \) és l'alçada del casquet. En el nostre cas, \( r = 1 \). Ens serà útil reescriure \ref{eq:volum d'un casquet} en funció de la distància entre el pla que defineix el casquet i l'origen. La distància, \( d \), entre el pla ---després del canvi de coordenades---	i l'origen ve donada per 
+\begin{equation}
+	d = \dfrac{D}{\sqrt{A^2a^2 + B^2b^2 + C^2c^2}}. \label{eq:definicio de d}
+\end{equation}
+Tal i com la definim, \( d \) pot ser negativa o positiva en funció del signe de \( D \). Això distingeix si el pla es troba per sota de l'origen, \( d < 0 \), o per sobre, \( d > 0 \). Tenim que \( h \) serà més petita que \( 1 \) quan \( d < 0 \), i de fet \( h - d = 1 \). Així doncs, substituïnt a \ref{eq:volum d'un casquet} obtenim
+\begin{equation}
+	m(H(A)) = \dfrac{\pi(1 + d)^2}{3}(2 - d) = \dfrac{\pi}{3}\left(2 + 3d - d^3\right).
+\end{equation}
+I finalment, recuperant \ref{eq:canvi de variables per simplificar} tenim
+\begin{equation}
+	m(A) = \dfrac{\pi}{3}abc (2 + 3d - d^3)
+\end{equation}
+amb \( d \) definida com a \ref{eq:definicio de d}. Ometem el valor absolut ja que, tal i com hem indicat abans, podem suposar sense pèrdua de generalitat que \( a, b, c \geq 0 \).
+
+
 
 \section*{Problema 4} \label{sec:problema 4} 
 Observem que en coordenades cartesianes, podem parametritzar la cardioide que té per equació \( r = 1 + \cos{\varphi} \) com
@@ -136,7 +174,6 @@ Més en detall:
 \begin{equation}
 	x +\left(\left(1 + \sqrt{2}\right)\sin{\theta}\right)\! y +\left(\left(1 + \sqrt{2}\right)\cos{\theta}\right)\! z = \dfrac{4 + 3\sqrt{2}}{2}. 
 \end{equation}
-
 
 
 \end{document}
