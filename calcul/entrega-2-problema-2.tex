@@ -1,0 +1,39 @@
+\section*{Problema 2}
+Fixat \( x \in \R \) tenim un polinomi de grau 5 en \( y \):
+\begin{equation}
+	x^4y^5 + x^2y^3 + y + x-1 = 0 \label{eq:polinomi en y}
+\end{equation}
+que per tant té almenys una arrel. De fet, per tot \( x \in \R \) en té exactament una, ja que si considerem la derivada d'aquest polinomi respecte de \( y \) tenim
+\begin{equation}
+	5x^4y^4 + 3x^2y^2 + 1 > 1 \label{eq:parcial en y}
+\end{equation}
+i per tant el polinomi és estrictament creixent a tot \( \R \) i concloem que té una única arrel. Aquesta arrel única, que existeix per a cada \( x \in \R \) és el \( h(x) \) que busquem. 
+
+Per veure que l'assignació \( x \longmapsto h(x) \) és infinitament derivable farem ús del teorema de la funció implícita. Definim
+\begin{align*}
+	F \colon \R^2 & \longrightarrow \R \\
+	(x,y) & \longmapsto x^4y^5 + x^2y^3 + y + x - 1.
+\end{align*}
+Hem demostrat a \ref{eq:parcial en y} que la derivada parcial de \( F \) respecte de \( y \) és estrictament més gran que 1 per tot \( x, y \in \R \). Per tant, el gradient de \( F \) mai no és nul. Aquestes són les condicions necessàries per, pel teorema de la funció implícita, demostrar que, per tot \( x \), existeix una funció \( g \) en un entorn de \( x \) tal que \( F(x, g(x)) = 0 \). Així doncs, com que clarament \( F \in C^{\infty}(\R^2) \) ja que és un polinomi, la funció implícita també és de classe \( C^{\infty}(\R^2) \). Però acabem de demostrar que per tot \( x \in \R \) hi ha un únic \( y = h(x) \in \R \) tal que \( F(x,h(x)) = 0 \) i per tant \( h \) és la funció implícita que ens garanteix el teorema i per tant \( h \in C^{\infty}(\R) \) tal i com volíem veure. 
+
+Per a calcular el desenvolupament de Taylor de \( h \) al voltant de \( 0 \) trobarem el valor de les derivades de \( h \) fins a ordre 3. Si derivem \ref{eq:polinomi en y} respecte de \( x \) trobem
+\vspace*{-0.5cm}
+\begin{equation}
+	4x^3 h(x)^5 + 5x^4 h(x)^4 h'(x) + 2xh(x)^3 + 3x^2 h(x) h'(x) + h'(x) + 1 = 0 \label{eq:derivada 1}
+\end{equation}
+i quan avaluem a \( x = 0 \) trobem \( h'(0) = -1 \). Observem que a \ref{eq:derivada 1} hi apareixen termes amb \( x \) de grau major que 2. Com que sempre avaluem a \( x = 0 \), aquests termes són sempre nuls, ja que quan haguem derivat dos cops per calcular la tercera derivada de \( h \), tindran \( x \) amb grau almenys 1. Procedint de la mateixa manera trobem \( h''(0) = -2 \) i \( h'''(0) = 18 \). Així, el polinomi de Taylor centrat en zero a ordre tres és 
+\begin{equation}
+	p(x) = h(0) + h'(0)x + \dfrac{h''(x)}{2}x^2 + \dfrac{h'''(x)}{6}x^3 = 1 - x - x^2 + 3x^3.
+\end{equation}
+Podem aproximar \( h(0.1) \) com \( p(0.1) = 0.893. \)
+
+Per a estimar l'error comès fem servir el teorema del valor mig. Tenim que existeix \( c \) entre \( h(0.1) \) i \( p(0.1) \) tal que 
+\begin{equation}
+	F(0.1, h(0.1)) - F(0.1, p(0.1)) = \partial_y F(0.1, c) (h(0.1) - p(0.1))
+\end{equation}
+i per tant
+\begin{align*}
+	\abs{h(0.1) - p(0.1)} &= \dfrac{\abs{F(0.1, h(0.1)) - F(0.1, p(0.1))}}{\abs{\partial_y F(0.1,c)}} \\
+												&< F(0.1, p(0.1) = 0.00018.
+\end{align*}
+ja que, per \ref{eq:parcial en y}, \( \partial_y F(x,y) > 1 \) per tot \( x,y \in \R \).

@@ -1,0 +1,61 @@
+\section*{Problema 1} \label{sec:problema 1}
+Sen's demana de resoldre una equació diferencial en derivades parcials fent servir un canvi de coordenades. L'equació en qüestió és 
+\begin{equation}
+  f_{xx}(x,y,z) - f_{yy}(x,y,z) + f_{zz}(x,y,z) - 2f_{xz}(x,y,z) = (y + z)(x + z) \label{eq:eq diferencial}.
+\end{equation}
+La solució \( f \colon \R^3 \longrightarrow \R \) suposarem que és una funció de classe \( C^2(\R^3) \). El canvi que sen's proposa ve donat per
+\begin{equation}
+	\begin{aligned}
+		\Psi \colon \R^3 & \longrightarrow \R^3 \\  
+		(x,y,z) & \longmapsto (x+y, y+z, z+x) .
+	\end{aligned} 
+	\label{eq:canvi de variables}
+\end{equation}
+Denotem les components de \( \Psi \) per \( u \), \( v \) i \( w \). És clar que \( \Psi \) és una bijecció lineal i per tant un difeomorfisme. Definim \( g = f \circ \Psi^{-1} \). D'aquesta manera es compleix \( f = g \circ \Psi \) i podem, fent servir la regla de la cadena, reescriure l'equació diferencial en termes de les noves coordenades. 
+\begin{equation}
+	\begin{aligned}
+  	f_x &= g_u u_x + g_v v_x + g_w w_x = g_u + g_w \\
+  	f_y &= g_u u_y + g_v v_y + g_w w_y = g_u + g_v \\
+  	f_z &= g_u u_z + g_v v_z + g_w w_z = g_v + g_w. 
+	\end{aligned}
+	\label{eq:primeres derivades}
+\end{equation}
+Tornem a derivar:
+\begin{align*}
+	f_{xx} &= g_{uu}u_x + g_{uv}v_x + g_{uw}w_x + g_{wu}u_x + g_{wv}v_x + g_{ww}w_x  \\
+				 &= g_{uu} + 2g_{uw} + g_{ww} \\
+	f_{yy} &= g_{uu}u_x + g_{uv}v_x + g_{uw}w_x + g_{vu}u_x + g_{vv}v_x + g_{vw}w_x  \\
+				 &= g_{uu} + 2g_{uv} + g_{vv} \\
+	f_{zz} &= g_{vu}u_z + g_{vv}v_z + g_{vw}w_z + g_{wu}u_z + g_{wv}v_z + g_{ww}w_z  \\
+				 &= g_{vv} + 2g_{vw} + g_{ww} \\
+	f_{xz} &= g_{uu}u_z + g_{uv}v_z + g_{uw}w_z + g_{wu}u_z + g_{wv}v_z + g_{ww}w_z  \\
+				 &= g_{uv} + g_{uw} + g_{wv} + g_{ww}. \\
+\end{align*}
+I per tant 
+\begin{equation}
+  f_{xx} + f_{yy} + f_{zz} - 2f_{xz} = -4g_{uv}. 
+\end{equation}
+Així doncs, l'equació diferencial en les noves coordenades és 
+\begin{equation}
+  g_{uv}(u,v,w) = -\dfrac{1}{4}vw. \label{eq:nova eq diferencial}
+\end{equation}
+En aquesta forma, podem solucionar \ref{eq:nova eq diferencial} de forma immediata per integració:
+\begin{equation}
+  g(u,v,w) = -\dfrac{1}{8}uwv^2 + A(v,w) + B(u,w), \label{eq:solucio general}
+\end{equation}
+on \( A \) i \( B \) són funcions arbitràries que compleixen \( A_u = B_v = 0 \). I en les coordenades originals, la solució és
+\begin{equation}
+  f(x,y,z) = -\dfrac{1}{8}(x+y)(x+z)(y+z)^2 + A(y+z,x+z) + B(x+y,x+z).
+\end{equation}
+
+Un cop tenim la solució general podem trobar la solució particular que sen's demana aplicant les condicions inicials. Tenim que, en el pla \( x+y = 0 \) es compleix \( f_y + f_z - f_x = 0 \). Fent servir \ref{eq:primeres derivades} veiem que aquesta condició, traduïda a les noves coordenades, és equivalent a \( g_v = 0 \) en els punts del pla \( u = 0 \). A partir de \ref{eq:solucio general} tenim que \( g_v(u,v,w) = -\frac{1}{4}uvw + A_v(v,w) \). Per tant, per tots els punts que compleixen \( u = 0 \) tenim que \( A_v(v,w) = 0 \), i per tant que \( A \) només depèn de \( w \) ja que no hi ha cap restricció sobre \( v \).
+
+Sabem també que \( f = 0 \) restringida als punts del pla \( x = 0 \). Traduït a les noves coordenades, \( g = 0 \) als punts del pla \( v = u + w \). Per tant, per tot \( u,w \in \R \) es compleix
+\begin{equation*}
+  -\dfrac{1}{8}uw(u+w)^2 + A(w) + B(u,w) = 0,
+\end{equation*}
+i per tant la solució que busquem és \( g(u,v,w) = \frac{1}{8}uw\left((u+w)^2 - v^2\right) \).
+
+Per veure que és única considerem dues potencials solucions, \( g_1 \) i \( g_2 \) i la seva diferència \( h = g_1 -g_2 \). Per linealitat tenim que \( h \) compleix \( h_{uv} = 0 \). Això ens dóna que \( h = A + B	\) amb \( A_u = B_v = 0 \). La funció \( h \) clarament també compleix les condicions inicials que compleixen \( g_1 \) i \( g_2 \). Així tenim, que en el pla \( u = 0 \), \( h_v(0,v,w) = A_v(v,w) = 0 \), per tant que \( A \) només depèn de \( w \). Per la segona condició, sabem que \( h \) és nul·la restringida als punts que compleixen \( v = u + w \). És a dir \( h(u,u+w,w) = 0 \) per tot \( u,w \in \R \). Però com que \( h \) no depèn de \( v \) concloem que \( h \) és idènticament zero i per tant \( g_1 = g_2 \), com volíem.
+
+
