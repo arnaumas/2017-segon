@@ -4,7 +4,13 @@
 \usepackage[bf,sf]{titlesec}
 \usepackage[font={footnotesize,sf}]{caption}
 
-\usepackage[colorlinks=true]{hyperref}
+\usepackage{titling,abstract,fancyhdr}
+
+
+\numberwithin{equation}{section}
+
+
+\usepackage[colorlinks=false]{hyperref}
 \usepackage[top=3cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{siunitx}
 \sisetup{allow-number-unit-breaks, prefixes-as-symbols=false, output-decimal-marker={,}, list-final-separator={and}, range-phrase={--}, range-units=brackets}
@@ -14,14 +20,25 @@
 \date{\textsf{9 de Gener 2018}}
 
 \begin{document}
-\maketitle
 \selectlanguage{catalan}
+
+\begin{titlingpage}
+ \maketitle
+
+\noindent 
+
 
 \begin{abstract}
 	L'objectiu d'aquesta pràctica és estudiar la mecànica de l'oscil·lador amortit i forçat. El sistema que s'observarà consisteix d'una massa subjectada a dues molles. La posició de la massa es mesurarà amb un sensor de posició, així com la posició del motor que es farà servir per a excitar el sistema.
 
 	En el cas de l'oscil·lador amortit, s'ha pogut observar la caiguda exponencial de l'amplitud amb el temps. Amb les mesures preses s'ha pogut calcular el coeficient de fregament, tot i que el valor obtingut discrepa considerablement amb el valor teòric. Pel cas forçat s'ha pogut observar el fenomen de ressonància, tant en termes d'amplitud com de desfasament. 
 \end{abstract}
+
+\end{titlingpage}
+
+\begin{titlingpage}
+\tableofcontents
+\end{titlingpage}
 
 \section{Introducció i Objectius}\label{sec:intro}
 L'objectiu d'aquesta pràctica és estudiar les característiques de l'oscil·lador amortit i forçat. Més concretament, en el cas de l'oscil·lador amortit es comprovarà l'efecte del fregament sobre la freqüència d'oscil·lació, així com la caiguda exponencial de l'amplitud amb el temps. Pel que fa al cas de l'oscil·lador forçat, es verificarà l'impacte que té la freqüència forçada sobre l'amplitud i el desfasament.
