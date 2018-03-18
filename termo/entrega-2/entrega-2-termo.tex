@@ -76,6 +76,12 @@ Si considerem el quocient \( A_Y / A_X \) trobem
 \end{equation*}
 Per tant el quocient tindrà límit finit només quan \( \lambda_X < \lambda_Y \). Això ens indica que només tindrem equilibri quan \( \lambda_X < \lambda_Y \). En aquestes condicions \( e^{-\lambda_X t} - e^{-\lambda_Y t} \) serà semblant a \( e^{-\lambda_X t}  \) molt depressa. Així doncs, les dues activitats decauran amb la mateixa constant. Ara bé, si el temps de mitja vida de \( X \) ---que està directament relacionat amb \( \lambda_X \) com \( T_X = \log{2}/\lambda_X \)--- és comparable amb l'escala de temps que estem considerant aleshores les dues activitats decauran prou depressa.  
 
+\begin{figure}[b]
+	\center
+	\input{./figs/transitori.tex}
+	\caption{Activitat del \( \mathsf{{}^{99}\text{Mo}} \) i del \( \mathsf{{}^{99}\text{Tc}} \) en funció del temps.}
+	\label{fig:equilibri transitori}
+\end{figure}
 Considerem el cas d'equilibri secular, és a dir quan \( \lambda_X \ll \lambda_Y \). Aleshores tenim 
 \begin{equation*}
 	\frac{\lambda_X \lambda_Y}{\lambda_Y - \lambda_X} \approx \lambda_X.
@@ -88,41 +94,35 @@ Per a l'última aproximació, observem que \( \lambda_X - \lambda_Y \approx -\la
 
 Finalment, si \( \lambda_X > \lambda_Y \) aleshores l'activitat de \( X \) decaurà molt més depressa que la de \( Y \). Ja hem observat que en aquest cas \( A_Y/A_X \) no té límit finit, sino que tendeix a \( -\infty \), per tant no s'assolirà cap equilibri. 
 
-Com a exemple d'equilibri transitori podem considerar la següent cadena de desintegracions:
-\begin{equation*}
-	{}_{42}^{99} \mathrm{Mo} \xrightarrow{\beta^-} {}_{43}^{99} \mathrm{Tc}^{\ast} \xrightarrow{\gamma} {}_{43}^{99} \mathrm{Tc}.
-\end{equation*}
-La desintegració \( \beta^- \) del molibdè--99 en tecneci--99 excitat té un temps de mitja vida de \SI{67}{h}, per tant una constant de desintegració de \SI{0.01}{h^{-1}}. En canvi, l'estabilització del tecneci--99 a través d'una emissió \( \gamma \) té un temps de mitja vida de \SI{6}{h} i per tant una constant de desintegració de \SI{0.12}{h^{-1}}. A la figura \ref{fig:equilibri transitori} es mostra l'activitat de cada nucli en la cadena de desintegracions. Es pot veure que s'arriba a l'equilibri al voltant d'un dia, temps a partir del qual les dues activitats decauen al mateix ritme. Cal mencionar que un \num{10}\% de les desintegracions \( \beta^- \) del \( {}^{99}\text{Mo} \) tenen com a producte \( {}^{99}\text{Tc} \) i no \( {}^{99}\text{Tc}^{\ast} \) de manera que la contribució del \(  {}^{99}\text{Mo} \) al \( {}^{99}\text{Tc} \) es veu reduïda en aquest percentatge. La línia intermitent mostra l'activitat del tecneci sense la correcció, i la línia sòlida amb la correcció.
-\begin{figure}
-	\center
-	\input{./figs/transitori.tex}
-	\caption{Activitat del \( \mathsf{{}^{99}\text{Mo}} \) i del \( \mathsf{{}^{99}\text{Tc}} \) en funció del temps.}
-	\label{fig:equilibri transitori}
-\end{figure}
-
-Un exemple d'equilibri transitori és la cadena següent:
-\begin{equation*}
-	{}^{113}_{50}\text{Sn} \xrightarrow{e^-} {}^{113}_{49}\text{In}^{\ast} \xrightarrow{\gamma} {}^{113}_{49}\text{In}
-\end{equation*}
-L'estany--113 es transforma en indi--113 excitat mitjançant una captura electrònica, i després s'estabilitza a través d'una emissió \( \gamma \). El primer procés té un temps de mitja vida de \SI{118}{d}, i el segon de \SI{1.7}{h}. Per tant tenen constants de desintegració \( \SI{5.9e-3}{d^{-1}} = \SI{2.4e-4}{h^{-1}} \) i \SI{0.41}{h^{-1}} respectivament. Tal i com es pot apreciar a la figura \ref{fig:equilibri secular}, l'activitat de l'indi és bàsicament idèntica a la de l'estany passades unes \SI{15}{h}, i la de l'estany es manté bàsicament constant en tot aquest temps. 
-\begin{figure}
+\begin{figure}[htb]
 	\center
 	\input{./figs/secular.tex}
 	\caption{Activitat del \( \mathsf{{}^{113}\text{Sn}} \) i del \( \mathsf{{}^{113}\text{In}} \) en funció del temps.}
 	\label{fig:equilibri secular}
 \end{figure}
+Com a exemple d'equilibri transitori podem considerar la següent cadena de desintegracions:
+\begin{equation*}
+	{}_{42}^{99} \mathrm{Mo} \xrightarrow{\beta^-} {}_{43}^{99} \mathrm{Tc}^{\ast} \xrightarrow{\gamma} {}_{43}^{99} \mathrm{Tc}.
+\end{equation*}
+La desintegració \( \beta^- \) del molibdè--99 en tecneci--99 excitat té un temps de mitja vida de \SI{67}{h}, per tant una constant de desintegració de \SI{0.01}{h^{-1}}. En canvi, l'estabilització del tecneci--99 a través d'una emissió \( \gamma \) té un temps de mitja vida de \SI{6}{h} i per tant una constant de desintegració de \SI{0.12}{h^{-1}}. A la figura \ref{fig:equilibri transitori} es mostra l'activitat de cada nucli en la cadena de desintegracions. Es pot veure que s'arriba a l'equilibri al voltant d'un dia, temps a partir del qual les dues activitats decauen al mateix ritme. Cal mencionar que un \num{10}\% de les desintegracions \( \beta^- \) del \( {}^{99}\text{Mo} \) tenen com a producte \( {}^{99}\text{Tc} \) i no \( {}^{99}\text{Tc}^{\ast} \) de manera que la contribució del \(  {}^{99}\text{Mo} \) al \( {}^{99}\text{Tc} \) es veu reduïda en aquest percentatge. La línia intermitent mostra l'activitat del tecneci sense la correcció, i la línia sòlida amb la correcció.
+
+
+\begin{figure}[htb]
+	\center
+	\input{./figs/no-equilibri.tex}
+	\caption{Activitat del \( \mathsf{{}^{210}\text{Bi}} \) i del \( \mathsf{{}^{210}\text{Po}} \) en funció del temps.}
+	\label{fig:no equilibri}
+\end{figure}
+Un exemple d'equilibri transitori és la cadena següent:
+\begin{equation*}
+	{}^{113}_{50}\text{Sn} \xrightarrow{e^-} {}^{113}_{49}\text{In}^{\ast} \xrightarrow{\gamma} {}^{113}_{49}\text{In}
+\end{equation*}
+L'estany--113 es transforma en indi--113 excitat mitjançant una captura electrònica, i després s'estabilitza a través d'una emissió \( \gamma \). El primer procés té un temps de mitja vida de \SI{118}{d}, i el segon de \SI{1.7}{h}. Per tant tenen constants de desintegració \( \SI{5.9e-3}{d^{-1}} = \SI{2.4e-4}{h^{-1}} \) i \SI{0.41}{h^{-1}} respectivament. Tal i com es pot apreciar a la figura \ref{fig:equilibri secular}, l'activitat de l'indi és bàsicament idèntica a la de l'estany passades unes \SI{15}{h}, i la de l'estany es manté bàsicament constant en tot aquest temps. 
 
 Finalment, considerem la següent cadena de desintegracions:
 \begin{equation*}
 	{}^{210}_{83}\text{Bi} \xrightarrow{\beta^-} {}^{210}_{84}\text{Po} \xrightarrow{\alpha} {}^{206}_{82}\text{Pb}
 \end{equation*}
 El bismut--210 decau amb un temps de mitja vida de \SI{5.01}{d}, i el poloni--210 decau amb un temps de mitja vida de \SI{138}{d}. El producte final, el plom--82 és estable. Les constants de desintegració, doncs, són \SI{0,14}{d^{-1}} i \SI{5e-3}{d^{-1}}. Per tant estem en la situació en la que no s'assoleix un equilibri. Això es pot apreciar a la figura \ref{fig:no equilibri}.
-
-\begin{figure}
-	\center
-	\input{./figs/no-equilibri.tex}
-	\caption{Activitat del \( \mathsf{{}^{210}\text{Bi}} \) i del \( \mathsf{{}^{210}\text{Po}} \) en funció del temps.}
-	\label{fig:no equilibri}
-\end{figure}
 
 \end{document}
