@@ -1,0 +1,27 @@
+set terminal epslatex size 10cm,6cm color colortext header '\sffamily \footnotesize'
+set output 'transitori.tex'
+
+#Activitat del molibde
+f(x) =  (0.01/0.0036) * exp(-0.01*x)
+#Activitat del tecneci
+g(x) = (0.01*0.12)/(0.0036*(0.12 - 0.01)) * (exp(-0.01*x) - exp(-0.12*x))
+#Activitat del tecneci corregida
+h(x) = (0.9*0.01*0.12)/(0.0036*(0.12 - 0.01)) * (exp(-0.01*x) - exp(-0.12*x))
+
+set xrange [0:200]
+set xtics scale 0.75 0,25,200
+set ytics scale 0.75
+
+set xlabel 'Temps (h)'
+set ylabel 'Activitat per nucli (\si{\micro Bq})'
+set format '$\mathsf{%g}$'
+
+set border linewidth 1.5
+set style line 1 linecolor rgb "blue" dashtype 1 linewidth 2
+set style line 2 linecolor rgb "violet" dashtype 1 linewidth 2
+set style line 3 linecolor rgb "violet" dashtype 2 linewidth 2
+
+set label '$\mathsf{ {}^{99}\text{Mo}}$' at 10,2.7 
+set label '$\mathsf{ {}^{99}\text{Tc}^{\ast}}$' at 15,1.5 
+
+plot f(x) notitle with lines linestyle 1 , g(x) notitle with lines linestyle 3, h(x) notitle with lines linestyle 2

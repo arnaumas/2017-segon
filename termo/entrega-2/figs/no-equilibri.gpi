@@ -1,0 +1,24 @@
+set terminal epslatex size 10cm,6cm color colortext header '\sffamily \footnotesize'
+set output 'no-equilibri.tex'
+
+#Activitat del bismut
+f(x) =  (0.14/0.0036) * exp(-0.14*x)
+#Activitat del poloni
+g(x) = (0.14*5E-3)/(0.0036*(5E-3 - 0.14)) * (exp(-0.14*x) - exp(-5E-3*x))
+
+set xrange [0:40]
+set xtics scale 0.75 0,5,40
+set ytics scale 0.75
+
+set xlabel 'Temps (d)'
+set ylabel 'Activitat per nucli (\si{\micro Bq})'
+set format '$\mathsf{%g}$'
+
+set border linewidth 1.5
+set style line 1 linecolor rgb "blue" dashtype 1 linewidth 2
+set style line 2 linecolor rgb "violet" dashtype 1 linewidth 2
+
+set label '$\mathsf{ {}^{210}\text{Bi}}$' at 2,32 
+set label '$\mathsf{ {}^{210}\text{Po}}$' at 2,3 
+
+plot f(x) notitle with lines linestyle 1 , g(x) notitle with lines linestyle 2
