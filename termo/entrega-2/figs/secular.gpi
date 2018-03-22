@@ -2,12 +2,12 @@ set terminal epslatex size 10cm,6cm color colortext header '\sffamily \footnotes
 set output 'secular.tex'
 
 #Activitat de l'estany
-f(x) =  (2.4E-4/0.0036) * exp(2.4E-4*x)
+f(x) =  (2.4E-4/0.0036) * exp(-2.4E-4*x)
 #Activitat de l'indi
 g(x) = (2.4E-4*0.4)/(0.0036*(0.4 - 2.4E-4)) * (exp(-2.4E-4*x) - exp(-0.4*x))
 
-set xrange [0:20]
-set xtics scale 0.75 0,2,20
+set xrange [0:30]
+set xtics scale 0.75 0,5,30
 set ytics scale 0.75
 
 set xlabel 'Temps (h)'
