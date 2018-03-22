@@ -2,9 +2,9 @@ set terminal epslatex size 10cm,6cm color colortext header '\sffamily \footnotes
 set output 'no-equilibri.tex'
 
 #Activitat del bismut
-f(x) =  (0.14/0.0036) * exp(-0.14*x)
+f(x) =  (0.14/(24*0.0036)) * exp(-0.14*x)
 #Activitat del poloni
-g(x) = (0.14*5E-3)/(0.0036*(5E-3 - 0.14)) * (exp(-0.14*x) - exp(-5E-3*x))
+g(x) = (0.14*5E-3)/(24*0.0036*(5E-3 - 0.14)) * (exp(-0.14*x) - exp(-5E-3*x))
 
 set xrange [0:40]
 set xtics scale 0.75 0,5,40
@@ -18,7 +18,7 @@ set border linewidth 1.5
 set style line 1 linecolor rgb "blue" dashtype 1 linewidth 2
 set style line 2 linecolor rgb "violet" dashtype 1 linewidth 2
 
-set label '$\mathsf{ {}^{210}\text{Bi}}$' at 2,32 
-set label '$\mathsf{ {}^{210}\text{Po}}$' at 2,3 
+set label '$\mathsf{ {}^{210}\text{Bi}}$' at 2,1.4 
+set label '$\mathsf{ {}^{210}\text{Po}}$' at 2,0.2 
 
 plot f(x) notitle with lines linestyle 1 , g(x) notitle with lines linestyle 2
