@@ -52,8 +52,8 @@
 \section*{Problema 1}
 Considerem dos grups \( H \) i \( K \) amb \( e_H \) i \( e_K \) els respectius elements neutres. Aleshores el producte \( G \defeq H \times K \) té per neutre \( e = (e_H, e_K) \). Hem de veure que \( H \) és isomorf a \( H' \defeq H \times \gen{e_K} \leq G \) i que \( H' \) és normal a \( G \). Definim la següent aplicació
 \begin{align*}
-	\psi \colon H & \to H \times \gen{e_K} \\
-	h & \mapsto (h, e_K). 
+	\psi \colon H & \longrightarrow H \times \gen{e_K} \\
+	h & \longmapsto (h, e_K). 
 \end{align*}
 Tenim que \( \psi \) és morfisme, ja que per tot \( h_1, h_2 \in H \) es verifica
 \begin{equation*}
@@ -67,8 +67,8 @@ I com que \( h^{-1}xh \in H \) tenim que \( (h^{-1}xh, e_K) \in H' \) i per tant
 
 Tenim exactament el mateix resultat si considerem l'altre factor del producte, és a dir \( K' \defeq \gen{e_H} \times K \). Observem que tenim un isomorfisme natural de \( H \times K \) a \( K \times H \) 
 \begin{align*}
-	\varphi \colon H \times K &\to K \times H \\
-	(h, k) & \mapsto (k,h).
+	\varphi \colon H \times K &\longrightarrow K \times H \\
+	(h, k) & \longmapsto (k,h).
 \end{align*}
 És clar que \( \varphi \) és bijectiva. I també és morfisme per com es defineix l'operació del producte de grups:
 \begin{equation*}
@@ -86,8 +86,11 @@ h_2^{-1}h_1 = k_2k_1^{-1}.
 \end{equation*}
 Com que \( h_2^{-1}h_1 \in H \) i \( k_2k_1^{-1} \in K \) això vol dir que \( h_2^{-1}h_1 = k_2k_1^{-1} \in H \cap K = \gen{e} \). Per tant \( h_1 = h_2 \) i \( k_1 = k_2 \). Això ens dóna que tot element de \( G \) s'escriu de manera única com el producte d'un element de \( H \) i un element de \( K \). Gràcies a això podem definir una aplicació 
 \begin{align*}
-
+	f \colon G & \longrightarrow H \times K \\
+	g = hk & \longmapsto (h,k).
 \end{align*}
+Que \( f \) està ben definida ens ho dóna la unicitat de \( h \) i \( k \) que acabem de provar. Per veure que \( f \) és un morfisme ens caldrà fer servir que \( H \) i \( K \) són normals a \( G \). Considerem \( g_1 = h_1k_1 \) i \( g_2 = h_2k_2 \) amb \( h_1,h_2 \in H \) i \( k_1,k_2 \in K \). Per veure que \( f \) és morfisme hem de provar que \( g_1g_2 = h_1h_2k_1k_2 \) ja que \( f(g_1)f(g_2) = (h_1,k_1)(h_2,k_2) = (h_1h_2,k_1k_2) \). Tenim que \( g_1g_2 = h_1k_1h_2k_2 \). Com que \( H \) és normal, existeix \( h_3 \in H \) tal que \( k_1h_2 = h_3k_1 \). Similarment, per la normalitat de \( K \) existeix \( k_3 \in K \) tal que \( k_1h_2 = h_2k_3 \). Això ens dóna \( g_1g_2 = h_1h_2k_3k_2 = h_1h_3k_1k_2 \). Però pel que hem provat prèviament ha de ser \( h_1h_2 = h_1h_3 \) i \( k_1k_2 = k_3k_2 \). Per tant \( f(g_1g_2) = f(h_1h_2k_1k_2) = (h_1h_2,k_1k_2) = f(g_1)f(g_2) \) i \( f \) és morfisme. \( f \) és epimorfisme ja que per tot \( (h,k) \in H \times K \) tenim \( f(hk) = (h,k) \). I també és monomorfisme ja que \( ee = e \). Així doncs tenim \( G = HK \cong H \times K \) quan \( H \) i \( K \) són subgrups normals amb intersecció trivial.
 
+\parbreak
 
 \end{document}
