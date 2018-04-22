@@ -9,7 +9,7 @@
 \usepackage{xcolor}
 \usepackage[bf,sf]{titlesec}
 \usepackage{graphicx}
-\usepackage{amasmath,amssymb}
+\usepackage{amsmath,amssymb}
 \usepackage[catalan]{cleveref}
 
 \geometry{
@@ -17,26 +17,77 @@
 	right = 2.5cm,
 	left = 2.5cm,
 	bottom = 3cm,
-	top = 3cm,
+	top = 3cm
 }
-
 \hypersetup{
 	colorlinks,
 	linkcolor = {red!50!blue},
 	linktoc = page
 }
 
-\newcommmand{\S}{\mathfrak{S}}
-\newcommmand{\A}{\mathfrak{A}}
+\renewcommand{\S}{\mathfrak{S}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\normal}{\trianglelefteq}
+\newcommand{\parbreak}{
+	\begin{center}
+		--- $\ast$ ---
+	\end{center} 
+}
+\makeatletter
+\newcommand*{\defeq}{\mathrel{\rlap{%
+                     \raisebox{0.3ex}{$\m@th\cdot$}}%
+                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
+                     =}
+\makeatother
 
-\title{\sffamily \bfseries{Entrega 1:} Grups}
+\title{\sffamily {\bfseries Entrega 1:} Grups}
 \author{\sffamily Arnau Mas}
 \date{\sffamily 24 d'Abril 2018}
+
 
 \begin{document}
 \maketitle
 
 \section*{Problema 1}
+Considerem dos grups \( H \) i \( K \) amb \( e_H \) i \( e_K \) els respectius elements neutres. Aleshores el producte \( G \defeq H \times K \) té per neutre \( e = (e_H, e_K) \). Hem de veure que \( H \) és isomorf a \( H' \defeq H \times \gen{e_K} \leq G \) i que \( H' \) és normal a \( G \). Definim la següent aplicació
+\begin{align*}
+	\psi \colon H & \to H \times \gen{e_K} \\
+	h & \mapsto (h, e_K). 
+\end{align*}
+Tenim que \( \psi \) és morfisme, ja que per tot \( h_1, h_2 \in H \) es verifica
+\begin{equation*}
+	\psi(h_1h_2) = (h_1h_2,e_K) = (h_1,e_K) (h_2,e_K) = \psi(h_1)\psi(h_2).
+\end{equation*}
+És cert que \( \psi \) és un monomorfisme, ja que \( (h_1, e_K) = (h_2,e_K) \) si i només si \( h_1 = h_2 \). I \( \psi \) també és epimorfisme ja que per tot \( g \in H' \) existeix \( h \in H \) tal que \( g = (h,e_K) \). Per tant \( \psi \) és isomorfisme. Això ens dóna \( H \cong H' \). Per veure que és normal considerem \( (x,e_K) \in H' \). Aleshores, per tot \( (h, k) \in G \) tenim
+\begin{equation*}
+	(h, k)^{-1}(x,e_K)(h,k) = (h^{-1}xh, k^{-1}k) = (h^{-1}xh, e_K).
+\end{equation*}
+I com que \( h^{-1}xh \in H \) tenim que \( (h^{-1}xh, e_K) \in H' \) i per tant concloem \( H' \normal G \). 
+
+Tenim exactament el mateix resultat si considerem l'altre factor del producte, és a dir \( K' \defeq \gen{e_H} \times K \). Observem que tenim un isomorfisme natural de \( H \times K \) a \( K \times H \) 
+\begin{align*}
+	\varphi \colon H \times K &\to K \times H \\
+	(h, k) & \mapsto (k,h).
+\end{align*}
+És clar que \( \varphi \) és bijectiva. I també és morfisme per com es defineix l'operació del producte de grups:
+\begin{equation*}
+	\varphi((h_1,k_1)(h_2,k_2)) = \varphi((h_1h_2,k_1k_2)) = (k_1k_2,h_1h_2) = (k_1,h_1)(k_2,h_2) = \varphi((h_1,k_1))\varphi((h_2,k_2)).
+\end{equation*}
+Així doncs tenim en particular que \( \gen{e_H} \times K \cong K \times \gen{e_H} \). Apliquem el resultat anterior a \( K \times \gen{e_H} \) dins de \( K \times H \) i tenim que és isomorf a \( K \) i normal a \( K \times H \). I per tant \( K' \) és isomorf a \( K \) i normal a \( G \).  
+
+Finalment, comprovem que \( H' \cap K' = \gen{e} \). Efectivament, considerem \( (h,k) \in H' \cap K' \). Aleshores, com que \( (h,k) \in H' \) ha de ser \( k = e_K \). I com que \( (h,k) \in K' \) ha de ser \( h = e_H \). I per tant \( (g,h) = (e_H, e_K) = e \).
+
+\parbreak
+
+Hem de veure ara el recíproc al resultat previ. És a dir, si \( H,K \normal G \) i \( G = HK \) amb \( H \cap K = \gen{e} \) aleshores \( G \cong H \times K \). Com que \( G = HK \) tenim que per tot \( g \in G \) existeixen \( h\in H \) i \( k \in K \) tals que \( g= hk \). De fet, com que \( H \cap K = \gen{e} \), \( h \) i \( k \) són únics. Efectivament, si \( g = h_1k_1 = h_2k_2 \) amb \( h_1,h_2 \in H \) i \( k_1,k_2 \in K \) aleshores tenim  
+\begin{equation*}
+h_2^{-1}h_1 = k_2k_1^{-1}.
+\end{equation*}
+Com que \( h_2^{-1}h_1 \in H \) i \( k_2k_1^{-1} \in K \) això vol dir que \( h_2^{-1}h_1 = k_2k_1^{-1} \in H \cap K = \gen{e} \). Per tant \( h_1 = h_2 \) i \( k_1 = k_2 \). Això ens dóna que tot element de \( G \) s'escriu de manera única com el producte d'un element de \( H \) i un element de \( K \). Gràcies a això podem definir una aplicació 
+\begin{align*}
+
+\end{align*}
 
 
 \end{document}
