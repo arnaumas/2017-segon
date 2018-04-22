@@ -27,8 +27,11 @@
 
 \renewcommand{\S}{\mathfrak{S}}
 \newcommand{\A}{\mathfrak{A}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\normal}{\trianglelefteq}
+\newcommand{\id}{\mathrm{id}}
 \newcommand{\parbreak}{
 	\begin{center}
 		--- $\ast$ ---
@@ -36,9 +39,9 @@
 }
 \makeatletter
 \newcommand*{\defeq}{\mathrel{\rlap{%
-                     \raisebox{0.3ex}{$\m@th\cdot$}}%
-                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
-                     =}
+    \raisebox{0.3ex}{$\m@th\cdot$}}%
+  \raisebox{-0.3ex}{$\m@th\cdot$}}%
+=}
 \makeatother
 
 \title{\sffamily {\bfseries Entrega 1:} Grups}
@@ -82,7 +85,7 @@ Finalment, comprovem que \( H' \cap K' = \gen{e} \). Efectivament, considerem \(
 
 Hem de veure ara el recíproc al resultat previ. És a dir, si \( H,K \normal G \) i \( G = HK \) amb \( H \cap K = \gen{e} \) aleshores \( G \cong H \times K \). Com que \( G = HK \) tenim que per tot \( g \in G \) existeixen \( h\in H \) i \( k \in K \) tals que \( g= hk \). De fet, com que \( H \cap K = \gen{e} \), \( h \) i \( k \) són únics. Efectivament, si \( g = h_1k_1 = h_2k_2 \) amb \( h_1,h_2 \in H \) i \( k_1,k_2 \in K \) aleshores tenim  
 \begin{equation*}
-h_2^{-1}h_1 = k_2k_1^{-1}.
+	h_2^{-1}h_1 = k_2k_1^{-1}.
 \end{equation*}
 Com que \( h_2^{-1}h_1 \in H \) i \( k_2k_1^{-1} \in K \) això vol dir que \( h_2^{-1}h_1 = k_2k_1^{-1} \in H \cap K = \gen{e} \). Per tant \( h_1 = h_2 \) i \( k_1 = k_2 \). Això ens dóna que tot element de \( G \) s'escriu de manera única com el producte d'un element de \( H \) i un element de \( K \). Gràcies a això podem definir una aplicació 
 \begin{align*}
@@ -106,6 +109,63 @@ Procedim per inducció sobre \( n \). El cas \( n = 2 \) és l'apartat anterior.
 
 \pagebreak
 \section*{Problema 2}
+Direm que un grup \( G \) és \emph{resoluble} si hi ha una cadena de subgrups
+\begin{equation*}
+	\gen{e} = H_0 \normal H_1 \normal \cdots \normal H_n = G,
+\end{equation*}
+tals que \( H_{i+1}/H_i \) és abelià per a tot \( i \in \{0,\cdots , n -1 \} \). 
+
+Tenim que \( \S_3 \) és resoluble. Efectivament, tenim la cadena 
+\begin{equation*}
+	\gen{\id} \normal \A_3 \normal \S_3.
+\end{equation*}
+Tenim que \( \S_3/\A_3 \cong \Z / 2\Z \) per tant és abelià. A més \( \abs{\A_3} = 3 \), per tant \( \A_3 / \gen{e} \cong \A_3 \cong \Z / 3\Z \) i també és abelià.  
+
+També és resoluble \( \S_4 \). Com abans tenim la cadena 
+\begin{equation*}
+	\gen{\id} \normal \A_4 \normal \S_4.
+\end{equation*}
+Igualment \( \S_4 / \A_4 \cong \Z / 2\Z \), que és abelià. Ara bé, \( \A_4 \) no és abelià. A \( \A_4 \) hi ha 8 3-cicles i 3 productes de transposicions disjuntes. Si \( \tau_1 \) i \( \tau_2 \) són dos productes de transposicions disjuntes diferents aleshores \( T \defeq \gen{\tau_1, \tau_2} \) és un subgrup normal de \( \A_4 \). Efectivament, com que el producte de dues transposicions disjuntes té ordre 2 tenim \( T = \{ \id, \tau_1, \tau_2, \tau_1 \tau_2 \} \) i \( \tau_1\tau_2 \) és el tercer producte de transposicions disjuntes. És normal perquè la conjugació de permutacions conserva el tipus cíclic. Tenim que \( T \cong V_4 \), on \( V_4 \) és el 4-grup de Klein. A més \( \abs{\A_4 / T} = 3 \) per tant \( \A_4 / T \cong \Z/3\Z \) i és abelià. Per tant la cadena
+\begin{equation*}
+	\gen{\id} \normal T \normal \A_4 \normal \S_4
+\end{equation*}
+prova que \( \S_4 \) és resoluble. 
+
+\parbreak
+
+Considerem un grup \( G \) i \( N \normal G \) un subgrup resoluble tal que \( G/N \) també és resoluble. Com que \( N \) és resoluble, tenim que existeix una cadena 
+\begin{equation*}
+	\gen{e} = H_0 \normal \cdots \normal H_n = N
+\end{equation*}
+amb \( H_{i+1} / H_i \) abelià. També tenim que hi ha una cadena 
+\begin{equation*}
+	\gen{\bar{e}} = \bar{H}_0 \normal \cdots \normal \bar{H}_m = G/N
+\end{equation*}
+amb \( \bar{H}_{i+1} / \bar{H}_i \) abelians. Sabem que els subgrups de \( G/N \) estan en correspondència bijectiva amb els subgrups de \( G \) que contenen \( N \). Així, per a cada \( \bar{H}_i \) existeix un únic \( H_{n+i} \leq G \) tal que \( N \normal H_{n+i} \) i \( H_{n+i}/N = \bar{H}_i \). Com que cada \( H_{n+i} \) és la preimatge de \( \bar{H}_i \) per la projecció a \( G \to G/N \), que és un epimorfisme, tenim que \( H_{n+i} \normal H_{n+i+1} \). A més, pel tercer teorema d'isomorfia tenim
+\begin{equation*}
+	\bar{H}_{i+1}/\bar{H}_i = (H_{n+i+1}/N)/(H_{n+i}/N) \cong H_{n+i+1}/H_{n+i}.
+\end{equation*}
+Finalment \( \gen{\bar{e}} \) es correspon amb \( N \). Tot això ens dóna una cadena
+\begin{equation*}
+	N = H_{n} \normal \cdots \normal H_{n+m} = G
+\end{equation*}
+amb \( H_{n+i+1}/H_{n+i} \)	abelià per tot \( i \in \{0, \cdots , n-1\} \). Per tant, ajuntant-la amb la cadena que ens dóna la resolubilitat de \( N \), concloem que \( G \) és resoluble. 
+
+Hem de veure ara el recíproc. És a dir, si \( N \normal G \) i \( G \) és resoluble aleshores tant \( N \) com a \( G/N \) són resolubles. Com que \( G \) és resoluble tenim la cadena
+\begin{equation*}
+	\gen{e} = H_0 \normal \cdots \normal H_n = G.
+\end{equation*}
+Considerem, per \( i \in \{0, \cdots , n \} \), els subgrups \( H_i \cap N \). Tenim que \( H_i \cap N \normal H_{i+1} \cap N \). Tenim que \( H_i \cap N \geq H_{i+1} \cap N \). Si \( g \in H_{i+1} \cap N \) i \( h \in H_i \cap N \) aleshores en particular \( h \in N \), per tant \(  g^{-1}hg \in N \), per la normalitat de \( N \) a \( G \). A més, com que \( H_i \normal H_{i+1} \) i en particular \( g \in H_{i+1} \) i \( h \in H_i \) també tenim \( g^{-1}hg \in H_i \). Per tant \( g^{-1}hg \in H_{i} \cap N \) i concloem \( H_{i} \cap N \normal H_{i+1} \cap N \). Així doncs tenim la cadena
+\begin{equation*}
+	\gen{e} = H_0 \cap N \normal \cdots \normal H_n \cap N = N.
+\end{equation*}
+Considerem ara el morfisme
+\begin{align*}
+	\pi \colon H_{i+1} \cap N & \longrightarrow H_{i+1}/H_i \\
+	g & \longmapsto \bar{g}
+\end{align*}
+que no és res més que la restricció a \( H_{i+1} \cap N \) de la projecció \( H_{i+1} \to H_{i+1}/H_{i} \). És clar que si \( g \in H_i \cap N \) aleshores \( g \in \ker \pi \) ja que en particular \( g \in H_i \). I si \( g \in \ker \pi \) aleshores \( g \in H_i \). Però \( g \in N \) ja que \( \ker \pi \normal H_{i+1} \cap N \). Per tant \( \ker \pi = H_i \cap N \). Pel primer teorema d'isomorfia, \( (H_{i+1} \cap N) / (H_i \cap N) \) és isomorf a un subgrup de \( H_{i+1}/H_i \). Però \( H_{i+1}/H_i \) és per hipòtesi abelià. Per tant \( (H_{i+1} \cap N) / (H_i \cap N) \) és abelià per tot \( i \in \{0, \cdots, n-1\} \). Això ens permet concloure que \( N \) és resoluble.  
+
 
 
 \end{document}
