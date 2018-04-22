@@ -93,4 +93,19 @@ Que \( f \) està ben definida ens ho dóna la unicitat de \( h \) i \( k \) que
 
 \parbreak
 
+A continuació generalitzem el resultat anterior per a qualsevol nombre de subgrups. És a dir, considerem un grup \( G \) amb \( H_1 \dots H_n \) subrups normals a \( G \) i 
+\begin{equation*}
+	H_i \cap \left(H_1 \dots H_{i-1} H_{i+1} \dots H_n\right) 
+\end{equation*}
+per tot \( i \in \{1, \cdots, n\} \) (podem definir \( H_0 = H_{n+1} = \gen{e} \) per evitar problemes amb el rang de \( i \)). Aleshores si \( G = H_1\cdots H_n \) es té \( G \cong H_1 \times \cdots \times H_n \).
+
+Procedim per inducció sobre \( n \). El cas \( n = 2 \) és l'apartat anterior. Considerem, per tot \( n \in \mathbb{N} \), \( G = H_1 \cdots H_{n+1} \) amb \( H_1, \cdots , H_{n+1} \) subgrups en les condicions anteriors. Com que el producte de sugrups normals és normal, \( H_1\cdots H_n \) és normal a \( G \). A més \( \left(H_1 \cdots H_n \right) \cap H_{n+1} = \gen{e} \), per tant podem aplicar l'apartat anterior per obtenir \( G \cong \left(H_1 \cdots H_n\right) \times H_{n+1} \). I si apliquem la hipòtesi d'inducció a \( H_1 \cdots H_n \) trobem 
+\begin{equation*}
+	G \cong \left(H_1 \times \cdots \times H_n\right) \times H_{n+1} \cong H_1 \times \cdots \times H_{n+1}.
+\end{equation*}
+
+\pagebreak
+\section*{Problema 2}
+
+
 \end{document}
