@@ -7,10 +7,10 @@
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage{xcolor}
-\usepackage[bf,sf]{titlesec}
+\usepackage[bf,sf,small,pagestyles]{titlesec}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
-\usepackage[catalan]{cleveref}
+% \usepackage[catalan]{cleveref}
 
 \geometry{
 	a4paper,
@@ -28,7 +28,8 @@
 \renewcommand{\S}{\mathfrak{S}}
 \newcommand{\A}{\mathfrak{A}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\gen}[1]{\langle #1 \rangle}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\normal}{\trianglelefteq}
 \newcommand{\id}{\mathrm{id}}
@@ -48,11 +49,23 @@
 \author{\sffamily Arnau Mas}
 \date{\sffamily 24 d'Abril 2018}
 
+\newpagestyle{pagina}{
+	\headrule
+	\sethead*{}{}{\sffamily \sectiontitle}
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\renewpagestyle{plain}{
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\pagestyle{pagina}
+
+\titleformat{\section}[hang]{\bfseries \sffamily \Large}{}{0pt}{}{\thispagestyle{plain}}
 
 \begin{document}
 \maketitle
-
-\section*{Problema 1}
+\section{Problema 1}
 Considerem dos grups \( H \) i \( K \) amb \( e_H \) i \( e_K \) els respectius elements neutres. Aleshores el producte \( G \defeq H \times K \) té per neutre \( e = (e_H, e_K) \). Hem de veure que \( H \) és isomorf a \( H' \defeq H \times \gen{e_K} \leq G \) i que \( H' \) és normal a \( G \). Definim la següent aplicació
 \begin{align*}
 	\psi \colon H & \longrightarrow H \times \gen{e_K} \\
@@ -108,7 +121,7 @@ Procedim per inducció sobre \( n \). El cas \( n = 2 \) és l'apartat anterior.
 \end{equation*}
 
 \pagebreak
-\section*{Problema 2}
+\section{Problema 2}
 Direm que un grup \( G \) és \emph{resoluble} si hi ha una cadena de subgrups
 \begin{equation*}
 	\gen{e} = H_0 \normal H_1 \normal \cdots \normal H_n = G,
@@ -141,7 +154,7 @@ amb \( H_{i+1} / H_i \) abelià. També tenim que hi ha una cadena
 \begin{equation*}
 	\gen{\bar{e}} = \bar{H}_0 \normal \cdots \normal \bar{H}_m = G/N
 \end{equation*}
-amb \( \bar{H}_{i+1} / \bar{H}_i \) abelians. Sabem que els subgrups de \( G/N \) estan en correspondència bijectiva amb els subgrups de \( G \) que contenen \( N \). Així, per a cada \( \bar{H}_i \) existeix un únic \( H_{n+i} \leq G \) tal que \( N \normal H_{n+i} \) i \( H_{n+i}/N = \bar{H}_i \). Com que cada \( H_{n+i} \) és la preimatge de \( \bar{H}_i \) per la projecció a \( G \to G/N \), que és un epimorfisme, tenim que \( H_{n+i} \normal H_{n+i+1} \). A més, pel tercer teorema d'isomorfia tenim
+amb \( \bar{H}_{i+1} / \bar{H}_i \) abelians. Sabem que els subgrups de \( G/N \) estan en correspondència bijectiva amb els subgrups de \( G \) que contenen \( N \). Així, per a cada \( \bar{H}_i \) existeix un únic \( H_{n+i} \leq G \) tal que \( N \normal H_{n+i} \) i \( H_{n+i}/N = \bar{H}_i \). Com que cada \( H_{n+i} \) és la preimatge de \( \bar{H}_i \) per la projecció a \( G \twoheadrightarrow G/N \), que és un epimorfisme, tenim que \( H_{n+i} \normal H_{n+i+1} \). A més, pel tercer teorema d'isomorfia tenim
 \begin{equation*}
 	\bar{H}_{i+1}/\bar{H}_i = (H_{n+i+1}/N)/(H_{n+i}/N) \cong H_{n+i+1}/H_{n+i}.
 \end{equation*}
@@ -164,8 +177,67 @@ Considerem ara el morfisme
 	\pi \colon H_{i+1} \cap N & \longrightarrow H_{i+1}/H_i \\
 	g & \longmapsto \bar{g}
 \end{align*}
-que no és res més que la restricció a \( H_{i+1} \cap N \) de la projecció \( H_{i+1} \to H_{i+1}/H_{i} \). És clar que si \( g \in H_i \cap N \) aleshores \( g \in \ker \pi \) ja que en particular \( g \in H_i \). I si \( g \in \ker \pi \) aleshores \( g \in H_i \). Però \( g \in N \) ja que \( \ker \pi \normal H_{i+1} \cap N \). Per tant \( \ker \pi = H_i \cap N \). Pel primer teorema d'isomorfia, \( (H_{i+1} \cap N) / (H_i \cap N) \) és isomorf a un subgrup de \( H_{i+1}/H_i \). Però \( H_{i+1}/H_i \) és per hipòtesi abelià. Per tant \( (H_{i+1} \cap N) / (H_i \cap N) \) és abelià per tot \( i \in \{0, \cdots, n-1\} \). Això ens permet concloure que \( N \) és resoluble.  
+que no és res més que la restricció a \( H_{i+1} \cap N \) de la projecció \( H_{i+1} \twoheadrightarrow H_{i+1}/H_{i} \). És clar que si \( g \in H_i \cap N \) aleshores \( g \in \ker \pi \) ja que en particular \( g \in H_i \). I si \( g \in \ker \pi \) aleshores \( g \in H_i \). Però \( g \in N \) ja que \( \ker \pi \normal H_{i+1} \cap N \). Per tant \( \ker \pi = H_i \cap N \). Pel primer teorema d'isomorfia, \( (H_{i+1} \cap N) / (H_i \cap N) \) és isomorf a un subgrup de \( H_{i+1}/H_i \). Però \( H_{i+1}/H_i \) és per hipòtesi abelià. Per tant \( (H_{i+1} \cap N) / (H_i \cap N) \) és abelià per tot \( i \in \{0, \cdots, n-1\} \). Això ens permet concloure que \( N \) és resoluble.  
 
+Per provar que \( G/N \) també és resoluble farem ús de la projecció
+\begin{align*}
+	\pi \colon G & \twoheadrightarrow G/N \\
+	g & \mapsto gN,
+\end{align*}
+que és un epimorfisme. En particular, si \( H_i \) són els subgrups de la cadena de resolubilitat de \( G \) aleshores \( \pi(H_i) \) són tots subgrups de \( G/N \). No només això sino que també tenim \( \pi(H_i) \normal \pi(H_{i+1}) \). A més, si \( H_{i+1}/H_i \) aleshores també ho és \( K_i \defeq \pi(H_{i+1})/\pi(H_i) \). Observem primer que els elements de \( K_i \) són precisament \( \pi(hH_i) \), amb \( h \in H_{i+1} \). Efectivament, considerem \( \bar{g} = g\pi(H_i) \in K_i \). Aleshores, com que \( g \in \pi(H_{i+1}) \), existeix \( h \in H_{i+1} \) tal que \( \pi(h) = g \). Aleshores tenim que \( \bar{g} = \pi(h) \pi(H_i) \). Considerem \( x \in \pi(h) \pi(H_i) \). És a dir, \( x = \pi(h)\pi(h') \)	per a cert \( h' \in H_i \). Aleshores \( x = \pi(hh') \in \pi(hH_i) \). De la mateixa manera, si \( y \in \pi(hH) \) vol dir que \( y = \pi(hh') \) per a cert \( h' \in H_i \). Per tant \( y \in \pi(h)\pi(h') \in \pi(h)\pi(H_i) \) i concloem que \( \bar{g} = \overline{\pi(h)} = \pi(h)\pi(H_i) = \pi(hH_i) \). Així doncs, si prenem \( g_1 = \pi(h_1) \in \pi(H_{i+1}) \) i \( g_2 = \pi(h_2) \in \pi(H_{i+1}) \) tenim
+\begin{equation*}
+	\bar{g_1}\bar{g_2} = \overline{g_1 g_2} = \pi(h_1h_2H_{i}) = \pi(h_2 h_1 H_i) = \overline{g_2 g_1} = \bar{g_1}\bar{g_2},
+\end{equation*}
+on hem fet servir que \( H_{i+1}/H_i \) és abelià. Per tant tenim la cadena
+\begin{equation*}
+	\gen{\bar{e}} = \pi(H_0) \normal \cdots \normal \pi(H_n) = G/N
+\end{equation*}
+amb \( \pi(H_{i+1}) / \pi(H_i) \) abelià per tot \( i \in \{0, \cdots, n-1\} \) i concloem que \( G/N \) és abelià. 
 
+\parbreak
+
+A continuació demostrem que tot \( p \)-grup és resoluble. Sabem que un grup \( G \) és un \( p \)-grup	quan \( \abs{G} = p^n \) amb \( p \) un primer. A més tot \( p \)-grup té centre no trivial. Procedim per inducció sobre \( n \). Considerem el cas \( n = 1 \), és a dir, d'un grup \( G \) amb \( \abs{G} = p \). Aleshores \( G \) és cíclic i en particular abelià. I per tant és trivialment resoluble amb la cadena \( \gen{e} \normal G \). Veiem ara que, per tot \( n \in \N \), la resolubilitat de tot \( p \)-grup d'ordre \( p^r \) amb \( r \leq n \) implica la resolubilitat de tot \( p \)-grup d'ordre \( p^{n+1} \). Efectivament, si \( \abs{G} = p^{n+1} \) aleshores \( Z(G) > \gen{e} \). Per tant \( \abs{Z(G)} = p^s \) amb \( s \leq n \). Tenim que \( Z(G) \) és abelià i per tant resoluble. El quocient \( G/Z(G) \) té ordre \( p^{n-r} \) i per tant podem aplicar la hipòtesi d'inducció per concloure que és resoluble. Per l'anterior resultat tenim que \( G \) també és resoluble i hem acabat.
+
+Podem, però, dir més sobre la cadena de subgrups d'un \( p \)-grup: tot \( p \)-grup té una cadena
+\begin{equation*}
+	\gen{e} = H_0 \normal \cdots \normal H_n = G,
+\end{equation*}
+amb \( H_{i+1}/H_i \cong \Z/p\Z \) per tot \( i \in \{0, \cdots, n-1 \} \). Com abans procedirem per inducció. El cas d'un grup d'ordre \( p \) és immediat ja que aleshores és cíclic i isomorf a \( \Z/p\Z \). Ara veurem que si la condició es compleix per tot \( p \)-grup d'ordre \( p^n \) per tot \( n \in \N \) aleshores és certa també per tot \( p \)-grup d'ordre \( p^{n+1} \). Prenem, doncs, un grup \( G \) d'ordre \( p^{n+1} \). Com que \( G \) és un \( p \)-grup té centre no trivial, i pel teorema de Cauchy existeix un element \( x \in Z(G) \) d'ordre \( p \). En particulat \( \gen{x} \normal G \). Tenim que \( G/\gen{x} \) és un \( p \)-grup d'ordre \( p^n \). Si apliquem la hipòtesi d'inducció obtenim la següent cadena
+\begin{equation*}
+	\gen{\bar{e}} = H_0 \normal \cdots \normal H_n = G/\gen{x}
+\end{equation*}
+amb \( H_{i+1}/H_i \cong \Z/p\Z \). Ja hem fet servir anteriorment la correspondència bijectiva que hi ha entre els subgrups del quocient d'un grup \( G \) per un subgrup normal \( N \) i els subgrups de \( G \) que contenen \( N \). Si denotem per \( \pi \) la projecció \( G \twoheadrightarrow G/N \) aleshores també es verifica que si \( H_1 \normal H_2 \leq G/N \) aleshores \( N \normal \pi^{-1}(H_1) \normal \pi^{-1}(H_2) \leq G \) i a més, fent ús del tercer teorema d'isomorfia, \( (H_2 \ \colon H_2) = (\pi^{-1}(H_2) \ \colon \pi^{-1}(H_2)) \), ja que un subgrup \( H \leq G/N \) és precisament de la forma \( H'/N \) amb \( H' \leq G \). Així doncs obtenim la cadena 
+\begin{equation*}
+	\gen{e} \normal \gen{x} = \pi^{-1}(H_0) \normal \cdots \normal \pi^{-1}(H_n) = G.
+\end{equation*}
+A més, per tot \( i \in \{0, \cdots, n-1\} \) tenim \( (H_{i+1} \ \colon H_i) = (\pi^{-1}(H_{i+1}) \ \colon \pi^{-1}(H_i)) = p \), per tant \( \pi^{-1}(H_{i+1}) / \pi^{-1}(H_i) \cong \Z/p\Z \) i tenim la condició també per a \( G \). 
+
+\parbreak
+
+Hem de provar que per a tot grup \( G \) existeix una cadena de subgrups 
+\begin{equation*}
+	\gen{e} = H_0 \leq \cdots \leq H_n = G
+\end{equation*}
+tal que els quocients \( H_{i+1}/H_i \) són simples. Procedirem per inducció sobre l'ordre de \( G \). El cas \( \abs{G} = 1 \) és trivial. Així mateix, si \( \abs{G} = 2 \) aleshores \( G \cong \Z/2\Z \) i hem acabat ja que \( \Z/2\Z \) és simple. Veiem doncs, que si tot grup d'ordre  \( r \geq n \) per tot \( n \in \N \) aleshores també la compleix tot grup d'ordre \( n+1 \). Considerem un grup \( G \) d'ordre \( n+1 \). Si \( G \) és simple hem acabat. Si \( G \) no és simple, hi ha un subgrup normal \( N \normal G \). En particular podem aplicar la hipòtesi a \( N \) per obtenir la cadena
+\begin{equation*}
+	\gen{e} = H_0 \leq \cdots \leq H_n = N
+\end{equation*}
+on els quocients successius són tots simples. Si \( G/N \) és simple simplement extenem la cadena amb \( G \) i hem acabat. Si no és el cas, apliquem la hipòtesi a \( G/N \) i obtenim la cadena
+\begin{equation*}
+\gen{\bar{e}} = \bar{H}_0 \leq \cdots \leq \bar{H}_{m} = N
+\end{equation*}
+tal que els quocients successius són simples. Tenim que per tot \( \bar{H}_i \) existeix un	\( N \normal H_{n+i} \leq G \) tal que \( H_{n+i}/N = \bar{H}_i \) i pel tercer teorema d'isomorfia tenim
+\begin{equation*}
+	\bar{H}_{i+1}/\bar{H}_i = (H_{n+i+1}/N) / (H_{n+i}/N) \cong H_{i+1}/H_i.
+\end{equation*}
+Així, com que \( N/N = \bar{H}_{0} = \gen{\bar{e}} \), podem completar la cadena que ens donava \( N \) per obtenir
+\begin{equation*}
+\gen{e} = H_0 \leq \cdots H_n = N \leq H_{n+1} \leq \cdots \leq H_{n+m} = G 
+\end{equation*}
+on els quocients successius són simples. 
+
+\parbreak
+
+Sigui \( G \) un grup d'ordre \( 2p^n \) amb \( p \) un primer diferent de 2. Pel primer teorema de Sylow, hi ha almenys un subgrup \( P \leq G \) d'ordre \( p^n \). Com que \( P \) té índex 2 a \( G \) aleshores és normal, i pel segon teorema de Sylow és únic. Com que \( P \) és un \( p \)-grup aleshores és resoluble. A més \( G/P \cong \Z/2\Z \) per tant és abelià i en particular resoluble. Per un resultat previ concloem que \( G \) és resoluble. 
 
 \end{document}
