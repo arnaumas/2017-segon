@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[catalan]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[bf,sf,small,pagestyles]{titlesec}
+\usepackage[font={footnotesize, sf}, labelfont=bf]{caption} 
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[catalan]{cleveref}
+
+\hypersetup{
+	colorlinks,
+	linkcolor = {red!50!blue},
+	linktoc = page
+}
+
+\geometry{
+	a4paper,
+	right = 2.5cm,
+	left = 2.5cm,
+	bottom = 3cm,
+	top = 3cm
+}
+
+\crefname{figure}{figura}{figures}
+
+\graphicspath{{./figs/}}
+
+% Unitats
+\sisetup{
+	inter-unit-product = \ensuremath{ \cdot },
+	allow-number-unit-breaks = true,
+	detect-family = true,
+	list-final-separator = { i },
+	list-units = single
+}
+
+% Format de títols i de pàgina
+\newpagestyle{pagina}{
+	\headrule
+	\sethead*{}{}{\sffamily \sectiontitle}
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\renewpagestyle{plain}{
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\pagestyle{pagina}
+
+\titleformat{\section}[hang]{\bfseries \sffamily \Large}{}{0pt}{}{\thispagestyle{plain}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\parbreak}{
+	\begin{center}
+		--- $\ast$ ---
+	\end{center} 
+}
+\makeatletter
+\newcommand*{\defeq}{\mathrel{\rlap{%
+    \raisebox{0.3ex}{$\m@th\cdot$}}%
+  \raisebox{-0.3ex}{$\m@th\cdot$}}%
+=}
+\makeatother
+
+\title{\sffamily {\bfseries Entrega 3:} Conducció de la calor}
+\author{\sffamily Arnau Mas}
+\date{\sffamily 4 de Maig 2018}
+
+\begin{document}
+\maketitle
+
+\section*{Problema 25}
+Considerem un tub cílindric de conductivitat constant \( \lambda \) que té un radi intern \( R_1 \) que es manté a temperatura constant \( T_1 \) i un radi extern que es manté a tempeartura constant \( T_2 \). Com que no hi ha fonts, l'equació de la temperatura és  
+\begin{equation} \label{eq:eq de la temperatura}
+\dot{T} = \alpha \nabla^2 T,
+\end{equation}
+on \( \alpha \defeq \frac{\lambda}{\rho c_e} \) és la difusivitat del material ---\( \rho \) i \( c_e \) són, respectivament, la densitat i calor específica del material---. Si considerem l'estat estacionari, és a dir, quan \( \cdot{T} = 0 \) aleshores l'\cref{eq:eq de la temperatura} esdevé
+\begin{equation} \label{eq:eq de la temperatura estacionaria}
+	\nabla^2 T = 0. 
+\end{equation}
+Si prenem coordenades cílindriques \( (r, \theta, z) \) per explotar la simetria del problema podem escriure \( T = T(r) \) ja que, per simetria, la temperatura no pot dependre ni de l'angle \( \theta \) ni de la coordenada \( z \). Així doncs, en coordenades, l'\cref{eq:eq de la temperatura estacionaria} és
+\begin{equation} \label{eq:eq de laplace coordenades}
+	\frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial T}{\partial r} \right) = 0. 
+\end{equation}
+La solució general d'aquesta equació és \( T(r) = A\log{r} + B \), ja que aleshores es compleix \( r \partial_rT \) és una constant, la qual cosa satisfa l'\cref{eq:eq de laplace coordenades}. Imposem les condicions de contorn per determinar \( A \) i \( B \):
+\begin{align*}
+	T(R_1) &= A\log{R_1} + B = T_1 \\
+	T(R_2) &= A\log{R_2} + B = T_2 
+\end{align*}
+implica
+\begin{equation*}
+ 	A = \frac{T_1 - T_2}{\log{R_1} - \log{R_2}} 
+\end{equation*}
+i per tant
+\begin{equation*}
+B = T_1 - A\log{R_1} = \frac{T_2 \log{R_1} - T_1 \log{R_2}}{\log{R_1} - \log{R_2}}. 
+\end{equation*}
+Així doncs, la distribució de temperatures és
+\begin{equation} \label{eq:distribucio de temperatura}
+	T(r,\theta,z) = \frac{T_1 - T_2}{\log{R_1} - \log{R_2}}\log{r} + \frac{T_2 \log{R_1} - T_1 \log{R_2}}{\log{R_1} - \log{R_2}}. 
+\end{equation}
+
+Podem fer servir \cref{eq:distribucio de temperatura} i la llei de Fourier per determinar la densitat de flux de calor \( \vec{q} \):
+\begin{equation*}
+	\vec{q} = -\lambda \nabla T = -\lambda \frac{\partial T}{\partial r} \vec{e}_r =  \frac{\lambda \left(T_2 - T_1\right)}{\log{R_1} - \log{R_2}} \frac{\vec{e}_r}{r} .
+\end{equation*}
+Per tant, si considerem un cilindre \( \mathcal{C} \) centrat a l'eix del tub de radi \( R_1 \leq r \leq R_2 \) i longitud \( L \), la potència \( \dot{Q} \) que atravessa la seva superfície és
+\begin{equation*}
+\dot{Q} = \int_{\mathcal{C}} \vec{q} \cdot d\vec{a} = \frac{\lambda \left(T_2 - T_1\right)}{\log{R_1} - \log{R_2}} \int_0^L \int_0^{2\pi} \frac{1}{r} r \, d\phi \, dz = \frac{2\pi \lambda L \left(T_2 - T_1\right)}{\log{R_1} - \log{R_2}} ,
+\end{equation*}
+ja que la densitat de flux és perpendicular a les tapes del cilindre. 
+
+Per tant, la potència per unitat de longitud que atravessa un cilindre de \( R_1 \leq r \leq R_2 \) centrat a l'eix del tub és 
+\begin{equation*}
+	\frac{\dot{Q}}{L} = \frac{2\pi\lambda \left(T_2 - T_1\right)}{\log{R_1} - \log{R_2}}.
+\end{equation*}
+
+
+\end{document}
