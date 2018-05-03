@@ -79,6 +79,25 @@
 
 \begin{document}
 \maketitle
+\section{Problema 18}
+Considerem una ona sonora amb longitud \( \lambda \) que es propaga a velocitat \( c \) a través d'un gas. En cada instant de temps les regions comprimides i enrarides del gas estan separades una longitud \( \lambda/2 \). Com que les dues regions es troben a temperatures diferents degut a la diferència de pressió hi haurà transferència de calor entre les dues. Sabem que, en bona aproximació, la calor viatja una distància proporcional a \( \sqrt{\alpha t} \) on \( \alpha \) és la difusivitat tèrmica de l'aire. Si \( T \) és el període de l'ona, passat un temps \( T/2 \) la distribució de pressions s'inverteix, és a dir, les regions enrarides passen a estar comprimides i viceversa. Durant aquest temps, doncs, la calor haurà viatjat, en mitjana, una distància de l'ordre 
+\begin{equation*}
+ \sqrt{\frac{\alpha T}{2}} = \sqrt{\frac{\lambda \alpha}{2 c}}.
+\end{equation*}
+Per poder considerar les ones sonores un procés adiabàtic cal que aquesta distància sigui molt menor que la separació entre les zones enrarides i comprimides, és a dir, 
+\begin{equation*}
+\sqrt{\frac{\lambda \alpha}{2c}} \ll \frac{\lambda}{2}.
+\end{equation*}
+Com que la freqüència \( f \) compleix \( f \lambda = c \) podem reescriure aquesta condició sobre la freqüència:
+\begin{equation*}
+	\sqrt{\frac{\alpha}{2fc}} \ll \frac{1}{2f} \implies f \ll \frac{c^2}{2\alpha}.
+\end{equation*}
+
+La velocitat de propagació del so és d'uns \SI{340}{m.s^{-1}} i la difusivitat tèrmica de l'aire a temperatura ambient --- \SI{300}{K}--- és de \SI{2e-5}{m^{2}. s^{-1}}. Això ens dóna una ifta per a la freqüència de
+\begin{equation*}
+	f \ll \SI{2.89e10}{Hz}.
+\end{equation*}
+Les ones sonores compleixen aquesta condició, tenint en compte que l'espectre sonor comprèn freqüències entre \SI{d1}{Hz} i \SI{d4}{Hz}. 
 
 \section{Problema 25}
 Considerem un tub cílindric de conductivitat constant \( \lambda \) que té un radi intern \( R_1 \) que es manté a temperatura constant \( T_1 \) i un radi extern que es manté a tempeartura constant \( T_2 \). Com que no hi ha fonts, l'equació de la temperatura és  
