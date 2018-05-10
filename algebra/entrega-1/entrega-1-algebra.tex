@@ -1,0 +1,249 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[catalan]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[bf,sf,small,pagestyles]{titlesec}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[catalan]{cleveref}
+
+\geometry{
+	a4paper,
+	right = 2.5cm,
+	left = 2.5cm,
+	bottom = 3cm,
+	top = 3cm
+}
+\hypersetup{
+	colorlinks,
+	linkcolor = {red!50!blue},
+	linktoc = page
+}
+
+\renewcommand{\S}{\mathfrak{S}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\normal}{\trianglelefteq}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\parbreak}{
+	\begin{center}
+		--- $\ast$ ---
+	\end{center} 
+}
+\makeatletter
+\newcommand*{\defeq}{\mathrel{\rlap{%
+    \raisebox{0.3ex}{$\m@th\cdot$}}%
+  \raisebox{-0.3ex}{$\m@th\cdot$}}%
+=}
+\makeatother
+
+\title{\sffamily {\bfseries Entrega 1:} Grups}
+\author{\sffamily Arnau Mas}
+\date{\sffamily 24 d'Abril 2018}
+
+\newpagestyle{pagina}{
+	\headrule
+	\sethead*{}{}{\sffamily \sectiontitle}
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\renewpagestyle{plain}{
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\pagestyle{pagina}
+
+\titleformat{\section}[hang]{\bfseries \sffamily \Large}{}{0pt}{}{\thispagestyle{plain}}
+
+\begin{document}
+\maketitle
+\section{Problema 1}
+Considerem dos grups \( H \) i \( K \) amb \( e_H \) i \( e_K \) els respectius elements neutres. Aleshores el producte \( G \defeq H \times K \) té per neutre \( e = (e_H, e_K) \). Hem de veure que \( H \) és isomorf a \( H' \defeq H \times \gen{e_K} \leq G \) i que \( H' \) és normal a \( G \). Definim la següent aplicació
+\begin{align*}
+	\psi \colon H & \longrightarrow H \times \gen{e_K} \\
+	h & \longmapsto (h, e_K). 
+\end{align*}
+Tenim que \( \psi \) és morfisme, ja que per tot \( h_1, h_2 \in H \) es verifica
+\begin{equation*}
+	\psi(h_1h_2) = (h_1h_2,e_K) = (h_1,e_K) (h_2,e_K) = \psi(h_1)\psi(h_2).
+\end{equation*}
+És cert que \( \psi \) és un monomorfisme, ja que \( (h_1, e_K) = (h_2,e_K) \) si i només si \( h_1 = h_2 \). I \( \psi \) també és epimorfisme ja que per tot \( g \in H' \) existeix \( h \in H \) tal que \( g = (h,e_K) \). Per tant \( \psi \) és isomorfisme. Això ens dóna \( H \cong H' \). Per veure que és normal considerem \( (x,e_K) \in H' \). Aleshores, per tot \( (h, k) \in G \) tenim
+\begin{equation*}
+	(h, k)^{-1}(x,e_K)(h,k) = (h^{-1}xh, k^{-1}k) = (h^{-1}xh, e_K).
+\end{equation*}
+I com que \( h^{-1}xh \in H \) tenim que \( (h^{-1}xh, e_K) \in H' \) i per tant concloem \( H' \normal G \). 
+
+Tenim exactament el mateix resultat si considerem l'altre factor del producte, és a dir \( K' \defeq \gen{e_H} \times K \). Observem que tenim un isomorfisme natural de \( H \times K \) a \( K \times H \) 
+\begin{align*}
+	\varphi \colon H \times K &\longrightarrow K \times H \\
+	(h, k) & \longmapsto (k,h).
+\end{align*}
+És clar que \( \varphi \) és bijectiva. I també és morfisme per com es defineix l'operació del producte de grups:
+\begin{equation*}
+	\varphi((h_1,k_1)(h_2,k_2)) = \varphi((h_1h_2,k_1k_2)) = (k_1k_2,h_1h_2) = (k_1,h_1)(k_2,h_2) = \varphi((h_1,k_1))\varphi((h_2,k_2)).
+\end{equation*}
+Així doncs tenim en particular que \( \gen{e_H} \times K \cong K \times \gen{e_H} \). Apliquem el resultat anterior a \( K \times \gen{e_H} \) dins de \( K \times H \) i tenim que és isomorf a \( K \) i normal a \( K \times H \). I per tant \( K' \) és isomorf a \( K \) i normal a \( G \).  
+
+Finalment, comprovem que \( H' \cap K' = \gen{e} \). Efectivament, considerem \( (h,k) \in H' \cap K' \). Aleshores, com que \( (h,k) \in H' \) ha de ser \( k = e_K \). I com que \( (h,k) \in K' \) ha de ser \( h = e_H \). I per tant \( (g,h) = (e_H, e_K) = e \).
+
+\parbreak
+
+Hem de veure ara el recíproc al resultat previ. És a dir, si \( H,K \normal G \) i \( G = HK \) amb \( H \cap K = \gen{e} \) aleshores \( G \cong H \times K \). Com que \( G = HK \) tenim que per tot \( g \in G \) existeixen \( h\in H \) i \( k \in K \) tals que \( g= hk \). De fet, com que \( H \cap K = \gen{e} \), \( h \) i \( k \) són únics. Efectivament, si \( g = h_1k_1 = h_2k_2 \) amb \( h_1,h_2 \in H \) i \( k_1,k_2 \in K \) aleshores tenim  
+\begin{equation*}
+	h_2^{-1}h_1 = k_2k_1^{-1}.
+\end{equation*}
+Com que \( h_2^{-1}h_1 \in H \) i \( k_2k_1^{-1} \in K \) això vol dir que \( h_2^{-1}h_1 = k_2k_1^{-1} \in H \cap K = \gen{e} \). Per tant \( h_1 = h_2 \) i \( k_1 = k_2 \). Això ens dóna que tot element de \( G \) s'escriu de manera única com el producte d'un element de \( H \) i un element de \( K \). Gràcies a això podem definir una aplicació 
+\begin{align*}
+	f \colon G & \longrightarrow H \times K \\
+	g = hk & \longmapsto (h,k).
+\end{align*}
+Que \( f \) està ben definida ens ho dóna la unicitat de \( h \) i \( k \) que acabem de provar. Per veure que \( f \) és un morfisme ens caldrà fer servir que \( H \) i \( K \) són normals a \( G \). Considerem \( g_1 = h_1k_1 \) i \( g_2 = h_2k_2 \) amb \( h_1,h_2 \in H \) i \( k_1,k_2 \in K \). Per veure que \( f \) és morfisme hem de provar que \( g_1g_2 = h_1h_2k_1k_2 \) ja que \( f(g_1)f(g_2) = (h_1,k_1)(h_2,k_2) = (h_1h_2,k_1k_2) \). Tenim que \( g_1g_2 = h_1k_1h_2k_2 \). Com que \( H \) és normal, existeix \( h_3 \in H \) tal que \( k_1h_2 = h_3k_1 \). Similarment, per la normalitat de \( K \) existeix \( k_3 \in K \) tal que \( k_1h_2 = h_2k_3 \). Això ens dóna \( g_1g_2 = h_1h_2k_3k_2 = h_1h_3k_1k_2 \). Però pel que hem provat prèviament ha de ser \( h_1h_2 = h_1h_3 \) i \( k_1k_2 = k_3k_2 \). Per tant \( f(g_1g_2) = f(h_1h_2k_1k_2) = (h_1h_2,k_1k_2) = f(g_1)f(g_2) \) i \( f \) és morfisme. \( f \) és epimorfisme ja que per tot \( (h,k) \in H \times K \) tenim \( f(hk) = (h,k) \). I també és monomorfisme ja que \( ee = e \). Així doncs tenim \( G = HK \cong H \times K \) quan \( H \) i \( K \) són subgrups normals amb intersecció trivial.
+
+\parbreak
+
+A continuació generalitzem el resultat anterior per a qualsevol nombre de subgrups. És a dir, considerem un grup \( G \) amb \( H_1 \dots H_n \) subrups normals a \( G \) i 
+\begin{equation*}
+	H_i \cap \left(H_1 \dots H_{i-1} H_{i+1} \dots H_n\right) 
+\end{equation*}
+per tot \( i \in \{1, \cdots, n\} \) (podem definir \( H_0 = H_{n+1} = \gen{e} \) per evitar problemes amb el rang de \( i \)). Aleshores si \( G = H_1\cdots H_n \) es té \( G \cong H_1 \times \cdots \times H_n \).
+
+Procedim per inducció sobre \( n \). El cas \( n = 2 \) és l'apartat anterior. Considerem, per tot \( n \in \mathbb{N} \), \( G = H_1 \cdots H_{n+1} \) amb \( H_1, \cdots , H_{n+1} \) subgrups en les condicions anteriors. Com que el producte de sugrups normals és normal, \( H_1\cdots H_n \) és normal a \( G \). A més \( \left(H_1 \cdots H_n \right) \cap H_{n+1} = \gen{e} \), per tant podem aplicar l'apartat anterior per obtenir \( G \cong \left(H_1 \cdots H_n\right) \times H_{n+1} \). I si apliquem la hipòtesi d'inducció a \( H_1 \cdots H_n \) trobem 
+\begin{equation*}
+	G \cong \left(H_1 \times \cdots \times H_n\right) \times H_{n+1} \cong H_1 \times \cdots \times H_{n+1}.
+\end{equation*}
+
+\pagebreak
+\section{Problema 2}
+Direm que un grup \( G \) és \emph{resoluble} si hi ha una cadena de subgrups
+\begin{equation*}
+	\gen{e} = H_0 \normal H_1 \normal \cdots \normal H_n = G,
+\end{equation*}
+tals que \( H_{i+1}/H_i \) és abelià per a tot \( i \in \{0,\cdots , n -1 \} \). 
+
+Tenim que \( \S_3 \) és resoluble. Efectivament, tenim la cadena 
+\begin{equation*}
+	\gen{\id} \normal \A_3 \normal \S_3.
+\end{equation*}
+Tenim que \( \S_3/\A_3 \cong \Z / 2\Z \) per tant és abelià. A més \( \abs{\A_3} = 3 \), per tant \( \A_3 / \gen{e} \cong \A_3 \cong \Z / 3\Z \) i també és abelià.  
+
+També és resoluble \( \S_4 \). Com abans tenim la cadena 
+\begin{equation*}
+	\gen{\id} \normal \A_4 \normal \S_4.
+\end{equation*}
+Igualment \( \S_4 / \A_4 \cong \Z / 2\Z \), que és abelià. Ara bé, \( \A_4 \) no és abelià. A \( \A_4 \) hi ha 8 3-cicles i 3 productes de transposicions disjuntes. Si \( \tau_1 \) i \( \tau_2 \) són dos productes de transposicions disjuntes diferents aleshores \( T \defeq \gen{\tau_1, \tau_2} \) és un subgrup normal de \( \A_4 \). Efectivament, com que el producte de dues transposicions disjuntes té ordre 2 tenim \( T = \{ \id, \tau_1, \tau_2, \tau_1 \tau_2 \} \) i \( \tau_1\tau_2 \) és el tercer producte de transposicions disjuntes. És normal perquè la conjugació de permutacions conserva el tipus cíclic. Tenim que \( T \cong V_4 \), on \( V_4 \) és el 4-grup de Klein. A més \( \abs{\A_4 / T} = 3 \) per tant \( \A_4 / T \cong \Z/3\Z \) i és abelià. Per tant la cadena
+\begin{equation*}
+	\gen{\id} \normal T \normal \A_4 \normal \S_4
+\end{equation*}
+prova que \( \S_4 \) és resoluble. 
+
+\parbreak
+
+Considerem un grup \( G \) i \( N \normal G \) un subgrup resoluble tal que \( G/N \) també és resoluble. Com que \( N \) és resoluble, tenim que existeix una cadena 
+\begin{equation*}
+	\gen{e} = H_0 \normal \cdots \normal H_n = N
+\end{equation*}
+amb \( H_{i+1} / H_i \) abelià. També tenim que hi ha una cadena 
+\begin{equation*}
+	\gen{\bar{e}} = \bar{H}_0 \normal \cdots \normal \bar{H}_m = G/N
+\end{equation*}
+amb \( \bar{H}_{i+1} / \bar{H}_i \) abelians. Sabem que els subgrups de \( G/N \) estan en correspondència bijectiva amb els subgrups de \( G \) que contenen \( N \). Així, per a cada \( \bar{H}_i \) existeix un únic \( H_{n+i} \leq G \) tal que \( N \normal H_{n+i} \) i \( H_{n+i}/N = \bar{H}_i \). Com que cada \( H_{n+i} \) és la preimatge de \( \bar{H}_i \) per la projecció a \( G \twoheadrightarrow G/N \), que és un epimorfisme, tenim que \( H_{n+i} \normal H_{n+i+1} \). A més, pel tercer teorema d'isomorfia tenim
+\begin{equation*}
+	\bar{H}_{i+1}/\bar{H}_i = (H_{n+i+1}/N)/(H_{n+i}/N) \cong H_{n+i+1}/H_{n+i}.
+\end{equation*}
+Finalment \( \gen{\bar{e}} \) es correspon amb \( N \). Tot això ens dóna una cadena
+\begin{equation*}
+	N = H_{n} \normal \cdots \normal H_{n+m} = G
+\end{equation*}
+amb \( H_{n+i+1}/H_{n+i} \)	abelià per tot \( i \in \{0, \cdots , n-1\} \). Per tant, ajuntant-la amb la cadena que ens dóna la resolubilitat de \( N \), concloem que \( G \) és resoluble. 
+
+Hem de veure ara el recíproc. És a dir, si \( N \normal G \) i \( G \) és resoluble aleshores tant \( N \) com a \( G/N \) són resolubles. Com que \( G \) és resoluble tenim la cadena
+\begin{equation*}
+	\gen{e} = H_0 \normal \cdots \normal H_n = G.
+\end{equation*}
+Considerem, per \( i \in \{0, \cdots , n \} \), els subgrups \( H_i \cap N \). Tenim que \( H_i \cap N \normal H_{i+1} \cap N \). Tenim que \( H_i \cap N \geq H_{i+1} \cap N \). Si \( g \in H_{i+1} \cap N \) i \( h \in H_i \cap N \) aleshores en particular \( h \in N \), per tant \(  g^{-1}hg \in N \), per la normalitat de \( N \) a \( G \). A més, com que \( H_i \normal H_{i+1} \) i en particular \( g \in H_{i+1} \) i \( h \in H_i \) també tenim \( g^{-1}hg \in H_i \). Per tant \( g^{-1}hg \in H_{i} \cap N \) i concloem \( H_{i} \cap N \normal H_{i+1} \cap N \). Així doncs tenim la cadena
+\begin{equation*}
+	\gen{e} = H_0 \cap N \normal \cdots \normal H_n \cap N = N.
+\end{equation*}
+Considerem ara el morfisme
+\begin{align*}
+	\pi \colon H_{i+1} \cap N & \longrightarrow H_{i+1}/H_i \\
+	g & \longmapsto \bar{g}
+\end{align*}
+que no és res més que la restricció a \( H_{i+1} \cap N \) de la projecció \( H_{i+1} \twoheadrightarrow H_{i+1}/H_{i} \). És clar que si \( g \in H_i \cap N \) aleshores \( g \in \ker \pi \) ja que en particular \( g \in H_i \). I si \( g \in \ker \pi \) aleshores \( g \in H_i \). Però \( g \in N \) ja que \( \ker \pi \normal H_{i+1} \cap N \). Per tant \( \ker \pi = H_i \cap N \). Pel primer teorema d'isomorfia, \( (H_{i+1} \cap N) / (H_i \cap N) \) és isomorf a un subgrup de \( H_{i+1}/H_i \). Però \( H_{i+1}/H_i \) és per hipòtesi abelià. Per tant \( (H_{i+1} \cap N) / (H_i \cap N) \) és abelià per tot \( i \in \{0, \cdots, n-1\} \). Això ens permet concloure que \( N \) és resoluble.  
+
+Per provar que \( G/N \) també és resoluble farem ús de la projecció
+\begin{align*}
+	\pi \colon G & \twoheadrightarrow G/N \\
+	g & \mapsto gN,
+\end{align*}
+que és un epimorfisme. En particular, si \( H_i \) són els subgrups de la cadena de resolubilitat de \( G \) aleshores \( \pi(H_i) \) són tots subgrups de \( G/N \). No només això sino que també tenim \( \pi(H_i) \normal \pi(H_{i+1}) \). A més, si \( H_{i+1}/H_i \) aleshores també ho és \( K_i \defeq \pi(H_{i+1})/\pi(H_i) \). Observem primer que els elements de \( K_i \) són precisament \( \pi(hH_i) \), amb \( h \in H_{i+1} \). Efectivament, considerem \( \bar{g} = g\pi(H_i) \in K_i \). Aleshores, com que \( g \in \pi(H_{i+1}) \), existeix \( h \in H_{i+1} \) tal que \( \pi(h) = g \). Aleshores tenim que \( \bar{g} = \pi(h) \pi(H_i) \). Considerem \( x \in \pi(h) \pi(H_i) \). És a dir, \( x = \pi(h)\pi(h') \)	per a cert \( h' \in H_i \). Aleshores \( x = \pi(hh') \in \pi(hH_i) \). De la mateixa manera, si \( y \in \pi(hH) \) vol dir que \( y = \pi(hh') \) per a cert \( h' \in H_i \). Per tant \( y \in \pi(h)\pi(h') \in \pi(h)\pi(H_i) \) i concloem que \( \bar{g} = \overline{\pi(h)} = \pi(h)\pi(H_i) = \pi(hH_i) \). Així doncs, si prenem \( g_1 = \pi(h_1) \in \pi(H_{i+1}) \) i \( g_2 = \pi(h_2) \in \pi(H_{i+1}) \) tenim
+\begin{equation*}
+	\bar{g_1}\bar{g_2} = \overline{g_1 g_2} = \pi(h_1h_2H_{i}) = \pi(h_2 h_1 H_i) = \overline{g_2 g_1} = \bar{g_1}\bar{g_2},
+\end{equation*}
+on hem fet servir que \( H_{i+1}/H_i \) és abelià. Per tant tenim la cadena
+\begin{equation*}
+	\gen{\bar{e}} = \pi(H_0) \normal \cdots \normal \pi(H_n) = G/N
+\end{equation*}
+amb \( \pi(H_{i+1}) / \pi(H_i) \) abelià per tot \( i \in \{0, \cdots, n-1\} \) i concloem que \( G/N \) és abelià. 
+
+\parbreak
+
+A continuació demostrem que tot \( p \)-grup és resoluble. Sabem que un grup \( G \) és un \( p \)-grup	quan \( \abs{G} = p^n \) amb \( p \) un primer. A més tot \( p \)-grup té centre no trivial. Procedim per inducció sobre \( n \). Considerem el cas \( n = 1 \), és a dir, d'un grup \( G \) amb \( \abs{G} = p \). Aleshores \( G \) és cíclic i en particular abelià. I per tant és trivialment resoluble amb la cadena \( \gen{e} \normal G \). Veiem ara que, per tot \( n \in \N \), la resolubilitat de tot \( p \)-grup d'ordre \( p^r \) amb \( r \leq n \) implica la resolubilitat de tot \( p \)-grup d'ordre \( p^{n+1} \). Efectivament, si \( \abs{G} = p^{n+1} \) aleshores \( Z(G) > \gen{e} \). Per tant \( \abs{Z(G)} = p^s \) amb \( s \leq n \). Tenim que \( Z(G) \) és abelià i per tant resoluble. El quocient \( G/Z(G) \) té ordre \( p^{n-r} \) i per tant podem aplicar la hipòtesi d'inducció per concloure que és resoluble. Per l'anterior resultat tenim que \( G \) també és resoluble i hem acabat.
+
+Podem, però, dir més sobre la cadena de subgrups d'un \( p \)-grup: tot \( p \)-grup té una cadena
+\begin{equation*}
+	\gen{e} = H_0 \normal \cdots \normal H_n = G,
+\end{equation*}
+amb \( H_{i+1}/H_i \cong \Z/p\Z \) per tot \( i \in \{0, \cdots, n-1 \} \). Com abans procedirem per inducció. El cas d'un grup d'ordre \( p \) és immediat ja que aleshores és cíclic i isomorf a \( \Z/p\Z \). Ara veurem que si la condició es compleix per tot \( p \)-grup d'ordre \( p^n \) per tot \( n \in \N \) aleshores és certa també per tot \( p \)-grup d'ordre \( p^{n+1} \). Prenem, doncs, un grup \( G \) d'ordre \( p^{n+1} \). Com que \( G \) és un \( p \)-grup té centre no trivial, i pel teorema de Cauchy existeix un element \( x \in Z(G) \) d'ordre \( p \). En particulat \( \gen{x} \normal G \). Tenim que \( G/\gen{x} \) és un \( p \)-grup d'ordre \( p^n \). Si apliquem la hipòtesi d'inducció obtenim la següent cadena
+\begin{equation*}
+	\gen{\bar{e}} = H_0 \normal \cdots \normal H_n = G/\gen{x}
+\end{equation*}
+amb \( H_{i+1}/H_i \cong \Z/p\Z \). Ja hem fet servir anteriorment la correspondència bijectiva que hi ha entre els subgrups del quocient d'un grup \( G \) per un subgrup normal \( N \) i els subgrups de \( G \) que contenen \( N \). Si denotem per \( \pi \) la projecció \( G \twoheadrightarrow G/N \) aleshores també es verifica que si \( H_1 \normal H_2 \leq G/N \) aleshores \( N \normal \pi^{-1}(H_1) \normal \pi^{-1}(H_2) \leq G \) i a més, fent ús del tercer teorema d'isomorfia, \( (H_2 \ \colon H_2) = (\pi^{-1}(H_2) \ \colon \pi^{-1}(H_2)) \), ja que un subgrup \( H \leq G/N \) és precisament de la forma \( H'/N \) amb \( H' \leq G \). Així doncs obtenim la cadena 
+\begin{equation*}
+	\gen{e} \normal \gen{x} = \pi^{-1}(H_0) \normal \cdots \normal \pi^{-1}(H_n) = G.
+\end{equation*}
+A més, per tot \( i \in \{0, \cdots, n-1\} \) tenim \( (H_{i+1} \ \colon H_i) = (\pi^{-1}(H_{i+1}) \ \colon \pi^{-1}(H_i)) = p \), per tant \( \pi^{-1}(H_{i+1}) / \pi^{-1}(H_i) \cong \Z/p\Z \) i tenim la condició també per a \( G \). 
+
+\parbreak
+
+Hem de provar que per a tot grup \( G \) existeix una cadena de subgrups 
+\begin{equation*}
+	\gen{e} = H_0 \leq \cdots \leq H_n = G
+\end{equation*}
+tal que els quocients \( H_{i+1}/H_i \) són simples. Procedirem per inducció sobre l'ordre de \( G \). El cas \( \abs{G} = 1 \) és trivial. Així mateix, si \( \abs{G} = 2 \) aleshores \( G \cong \Z/2\Z \) i hem acabat ja que \( \Z/2\Z \) és simple. Veiem doncs, que si tot grup d'ordre  \( r \geq n \) per tot \( n \in \N \) aleshores també la compleix tot grup d'ordre \( n+1 \). Considerem un grup \( G \) d'ordre \( n+1 \). Si \( G \) és simple hem acabat. Si \( G \) no és simple, hi ha un subgrup normal \( N \normal G \). En particular podem aplicar la hipòtesi a \( N \) per obtenir la cadena
+\begin{equation*}
+	\gen{e} = H_0 \leq \cdots \leq H_n = N
+\end{equation*}
+on els quocients successius són tots simples. Si \( G/N \) és simple simplement extenem la cadena amb \( G \) i hem acabat. Si no és el cas, apliquem la hipòtesi a \( G/N \) i obtenim la cadena
+\begin{equation*}
+\gen{\bar{e}} = \bar{H}_0 \leq \cdots \leq \bar{H}_{m} = G/N
+\end{equation*}
+tal que els quocients successius són simples. Tenim que per tot \( \bar{H}_i \) existeix un	\( N \normal H_{n+i} \leq G \) tal que \( H_{n+i}/N = \bar{H}_i \) i pel tercer teorema d'isomorfia tenim
+\begin{equation*}
+	\bar{H}_{i+1}/\bar{H}_i = (H_{n+i+1}/N) / (H_{n+i}/N) \cong H_{i+1}/H_i.
+\end{equation*}
+Així, com que \( N/N = \bar{H}_{0} = \gen{\bar{e}} \), podem completar la cadena que ens donava \( N \) per obtenir
+\begin{equation*}
+\gen{e} = H_0 \leq \cdots H_n = N \leq H_{n+1} \leq \cdots \leq H_{n+m} = G 
+\end{equation*}
+on els quocients successius són simples. 
+
+Anem a calcular una cadena amb aquestes condicions a \( \Z/12\Z \). Tenim
+\begin{equation*}
+\gen{0} \leq \gen{\bar{6}} \leq \gen{\bar{3}} \leq \Z/12\Z. 
+\end{equation*}
+\( \gen{\bar{6}}/\gen{\bar{0}} \cong \gen{\bar{6}} \) és simple ja que té ordre 2. També és simple \( \gen{\bar{3}} / \gen{\bar{6}} \cong 3\Z/6\Z \), ja que té també té ordre 2. I finalment \( (\Z/12\Z)/\gen{\bar{3}} \cong \Z/3\Z \) també és simple ja que té ordre 3.
+
+\parbreak
+
+Sigui \( G \) un grup d'ordre \( 2p^n \) amb \( p \) un primer diferent de 2. Pel primer teorema de Sylow, hi ha almenys un subgrup \( P \leq G \) d'ordre \( p^n \). Com que \( P \) té índex 2 a \( G \) aleshores és normal, i pel segon teorema de Sylow és únic. Com que \( P \) és un \( p \)-grup aleshores és resoluble. A més \( G/P \cong \Z/2\Z \) per tant és abelià i en particular resoluble. Per un resultat previ concloem que \( G \) és resoluble. 
+
+\end{document}
