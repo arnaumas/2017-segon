@@ -89,7 +89,7 @@ Per veure que \( N \) és multiplicativa observem que \( N(z) = z\bar{z} \) per 
 \end{equation*}
 Per tant, per tot \( z, w \in \R \) tenim
 \begin{equation*}
-	N(zw) = zw \bar{zw} = z\bar{z} w\bar{w} = N(z) N(w).
+	N(zw) = zw \overline{zw} = z\bar{z} w\bar{w} = N(z) N(w).
 \end{equation*}
 
 \parbreak
@@ -131,13 +131,13 @@ Per tant ha de ser \( 2\lambda_2 + \mu_1 + \mu_2 = 0 \) i \( 2\lambda_1 + \mu_1 
 \begin{equation*}
 	2(\lambda_1 - \lambda_2) - 4\mu_2 = 1. 
 \end{equation*}
-Però aleshores \( \lambda_1, \mu_1 \) i \( \mu_2  \) no poden existir ja que tant \( 2(\lambda_1 - \lambda_2) \) com \( 4\mu_2 \) serien parells i \( -1 \) no és parell. Per tant \( z \) i \( w \) no satisfan una identitat de Bézout.  
+Però aleshores \( \lambda_1, \mu_1 \) i \( \mu_2  \) no poden existir ja que tant \( 2(\lambda_1 - \lambda_2) \) com \( 4\mu_2 \) serien parells i \( 1 \) no és parell. Per tant \( z \) i \( w \) no satisfan una identitat de Bézout.  
 
 \parbreak
 
 Tenim que \( zw = 2(1 + \sqrt{-3}) = 2 + 2 \sqrt{-3} \) és un múltiple comú de \( z \) i \( w \). També ho és \( z^2 = w \bar{w} = 4 \) i \( N(z^2) = N(w \bar{w}) = 16 \). Si \( z \) i \( w \) tinguessin un mínim comú múltiple \( m \) hauria de passar, per definició, \( m \mid 4 \) i \( m \mid (2 + 2\sqrt{-3}) \). Això ens diu \( N(m) \mid 16 \). Com hem comentat abans, la norma d'un element de \( \R \) no pot ser 2, per tant \( N(m) \neq 8 \) ja que si fos així i escribim \( 4 = am \) aleshores \( N(a) = 2 \): una contradicció. A més, com que, per definició, \( z \mid m \) i \( w \mid m \) hem de tenir \( N(m) \geq 4 \). Les úniques opcions possibles, doncs, són \( N(m) = 16 \) i \( N(m) = 4 \).
 
-Si \( N(m) \) fos 16 aleshores tindriem que \( m \) és associat tant a \( z^2 \) com a \( w\bar{w} \) ---com que \( m \mid z^2 = 4 \) tenim \( m = 4b \) per \( b \in \R \), però aleshores \( N(b) = 1 \) i \( b \) és una unitat; i de la mateixa manera comprovem que \( m \) i \( w\bar{w} \) serien associats---, però això sabem que no és el cas ja que \( w\bar{w} \) i \( z^2 \) no són associats.  
+Si \( N(m) \) fos 16 aleshores tindriem que \( m \) és associat tant a \( z^2 \) com a \( zw \) ---com que \( m \mid z^2 = 4 \) tenim \( m = 4b \) per \( b \in \R \), però aleshores \( N(b) = 1 \) i \( b \) és una unitat; i de la mateixa manera comprovem que \( m \) i \( zw \) serien associats---, però això sabem que no és el cas ja que \( zw \) i \( z^2 \) no són associats.  
 
 I si \( N(m) \) fos 4 aleshores, per un apartat anterior, \( m \) seria irreductible; en contradicció amb la hipotesi que \( z \mid m \) i \( w \mid m \) ---i amb que \( z \) i \( w \) no són associats. Així doncs concloem que \( m \) no pot existir i que \( z \) i \( w \) no tenen mínim comú múltiple.   
 
@@ -153,7 +153,7 @@ Tenim
 \begin{equation*}
 	4 = 2 \cdot 2 = (1 + \sqrt{-3})(1 - \sqrt{-3}).
 \end{equation*}
-Ja hem vist que tant \( 2 \) com \( 1 + \sqrt{-3} \) són irreductibles no associats. També és irreductible \( 1 - \sqrt{-3} \) ja que \( N(1 - \sqrt{-3}) = 4 \). I 2 tampox no és associat a \( 1 - \sqrt{-3} \). Per tant acabem d'escriure 4 com a producte d'irreductibles de dues maneres diferents. Això ens dóna que \( \R \) no és un DFU.    
+Ja hem vist que tant \( 2 \) com \( 1 + \sqrt{-3} \) són irreductibles no associats. També és irreductible \( 1 - \sqrt{-3} \) ja que \( N(1 - \sqrt{-3}) = 4 \). I 2 tampoc no és associat a \( 1 - \sqrt{-3} \). Per tant acabem d'escriure 4 com a producte d'irreductibles de dues maneres diferents. Això ens dóna que \( \R \) no és un DFU.    
 
 
 \end{document}
