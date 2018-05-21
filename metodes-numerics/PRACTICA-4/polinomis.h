@@ -6,3 +6,5 @@ double legendreDerivada(double, int);
 double chebyshevDerivada(double, int);
 double newtonLeg(double, int, double);
 double newtonCheb(double, int, double);
+void coeficientsLeg(int, double*, double*);
+void coeficientsCheb(int, double*);

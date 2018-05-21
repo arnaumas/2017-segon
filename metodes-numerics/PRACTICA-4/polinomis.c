@@ -126,3 +126,20 @@ double newtonCheb(double x, int n, double tol) {
 	return xn;
 }
 
+// Omple la llista 'coefs' amb els coeficients de la quadratura de Gauss-Legendre de grau n
+void coeficientsLeg(int n, double* arrels, double* coefs) {
+	int i;
+	for(i = 0; i < n; i++) {
+		coefs[i] = 2 / ((1-arrels[i]*arrels[i]) * (legendreDerivada(arrels[i], n))*(legendreDerivada(arrels[i], n)));
+	}
+}
+
+// Omple la llista 'coefs' amb els coeficients de la qudratura de Gauss-Chebyshev de grau n
+void coeficientsCheb(int n, double* coefs) {
+	int i;
+	for(i = 0; i < n; i++) {
+		coefs[i] = M_PI / (double) n;
+	}
+}
+	
+
