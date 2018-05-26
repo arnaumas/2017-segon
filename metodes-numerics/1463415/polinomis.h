@@ -1,0 +1,11 @@
+double avalua(double*, int, double);
+void deriva(double*, int, double*);
+void suma(double*, int, double*, int, double*);
+void escala(double, double*, int, double*);
+void legendre(int, double*);
+void chebyshev(int, double*);
+void trobarIntervals(double*, int, double*);
+double newton(double*, int, double, double);
+void coeficientsLeg(int, double*, double*, double*);
+void coeficientsCheb(int, double*);
+double trapezis(int, double, double, double*);
