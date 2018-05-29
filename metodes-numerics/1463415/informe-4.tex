@@ -49,7 +49,9 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\gr}{gr}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\inn}[2]{\left\langle #1 , #2 \right\rangle}
 \newcommand{\parbreak}{
 	\begin{center}
 		--- $\ast$ ---
@@ -64,7 +66,7 @@
 
 \newpagestyle{pagina}{
 	\headrule
-	\sethead*{\sffamily {\bfseries Pràctica 3:} Interpolació polinòmica i integració numèrica}{}{\sffamily \sectiontitle}
+	\sethead*{\sffamily {\bfseries Pràctica 4:} Quadratura de Gauss}{}{\sffamily Arnau Mas}
 	\footrule
 	\setfoot*{}{}{\sffamily \thepage}
 }
@@ -74,8 +76,6 @@
 }
 \pagestyle{pagina}
 
-\titleformat{\section}[hang]{\bfseries \sffamily \Large}{}{0pt}{}{\thispagestyle{plain}}
-
 \title{\sffamily {\bfseries Pràctica 4:} Quadratura de Gauss}
 \author{\sffamily Arnau Mas}
 \date{\sffamily 6 de juny 2018}
@@ -83,6 +83,51 @@
 \begin{document}
 \maketitle
 
-\section{Problemes obligatoris}
+\section{Introducció}
+Les fórmules de quadratura gaussianes apareixen per intentar millorar la precisió de les regles de quadratura de Newton-Cotes. Fent una tria precisa dels nodes es pot reduir molt la fita de l'error comès. Concretament, posem que tenim unz funció \( f \colon [a,b] \longrightarrow \R \) integrable i \( \omega \colon [a,b] \longrightarrow [0, \infty) \) una funció pes no negativa en \( [a,b] \). Aleshores aproximarem la integral \( \int_a^b \omega(x)f(x) \, dx \) per
+\begin{equation*}
+ 	\int_a^b \omega(x)f(x) \, dx \approx \sum_{i = 1}^n \omega_i f(\alpha_i). 
+\end{equation*}
+Els \( \alpha_i \) s'anomenen els nodes i els \( \omega_i \) reben el nom de pesos. L'utilitat de la quadratura de Gauss apareix per a una bona tria de nodes ---un cop triats els nodes els pesos queden determinats imposant exactitud de la fórmula per a polinomis de graus entre 0 i \( n-1 \).  
+
+La funció pes \( \omega \) indueix un producte interior semidefinit positiu a l'espai de funcions definit com
+\begin{equation*}
+	\inn{f}{g} \defeq \int_a^b \omega(x) f(x) g(x) \, dx.
+\end{equation*}
+Es diu que és semidefinit positiu perquè per tota \( f \) integrable no nu\l.la \( \inn{f}{f} \geq 0 \). Aleshores podem definir una noció d'ortogonalitat dient que \( f \) i \( g \) són ortogonals si i només si \( \inn{f}{g} = 0 \). Direm que una família de polinomis \( (p_n) \) és ortogonal si \( \inn{p_i}{p_j} = 0 \) per tot \( i \neq j \). Es pot demostrar que per tot pes existeix una única família ortogonal \( (p_n) \) de polinomis mònics i tals que \( \gr p_n = n \). A més, cada membre de la família \( p_n \) té \( n \) arrels diferents totes contingudes a \( [a,b] \). Precisament aquestes arrels són els nodes de la corresponent fórmula de quadratura de gauss. Els dos pesos que farem servir en aquesta pràctica són \( \omega(x) = 1 \), que dóna lloc als polinomis de Legendre, i \( \omega(x) = (1 - x^2)^{-1/2} \), que dóna lloc als polinomis de Chebyshev ---ambdós pesos estan definits a \( [-1,1] \). A partir d'ara \( L_n \) denotarà el polinomi de Legendre de grau \( n \) i \( C_n \) denotarà el polinomi de Chebyshev de grau \( n \). 
+
+\section{Càlcul dels nodes}
+
+Existeixen fórmules recursives per a trobar els polinomis de Legendre i de Chebyshev, concretament
+\begin{equation} \label{eq:recursio legendre}
+	L_n = \frac{2n-1}{n}xL_{n-1} - \frac{n-1}{n}L_{n-2}
+\end{equation}
+i
+\begin{equation} \label{eq:recursio chebyshev}
+	C_n = 2xC_{n-1} - C_{n-2},
+\end{equation}
+amb \( L_0 = C_0 = 1 \) i \( L_1 = C_1 = x \). 
+
+Al programa \texttt{polinomis.c} hi ha rutines que implementen les \cref{eq:recursio legendre,eq:recursio chebyshev} per calcular els polinomis de Chebyshev i Legendre de grau \( n \). També hi ha implementada una rutina que detecta els punts on un polinomi canvia de signe avaluant-lo a increments petits. Com que sabem que \( L_n \) i \( C_n \) tenen \( n \) arrels diferents a \( [-1,1] \), aquesta rutina ens permet trobar una primera aproximació d'aquestes: guarda el punt mig entre dos punts on el polinomi té signe diferent, sabent que ha de trobar exactament \( n \) canvis de signe. Si no els troba, ho torna a repetir avaluant a increments més petits. Seguidament, aquestes primeres aproximacions es milloren fent servir el mètode de Newton amb una tolerància donada. Amb tot això tenim els nodes per a les quadratures de Gauss-Legendre i Gauss-Chebyshev.     
+
+\section{Càlcul dels pesos}
+
+Ja hem mencionat que els pesos \( \omega_i \) queden determinats imposant exactitud de la fórmula. Concretament imposem
+\begin{equation*}
+	\int_{-1}^{1}\omega(x) x^k \,dx = \sum_{i = 1}^n \omega_i \alpha_i^k
+\end{equation*}
+per tot \( 0 \leq k \leq n-1 \). Fem el càlcul explícit per les quadratures de Gauss-Legendre i Gauss-Chebyshev. Pel cas de Legendre es té \( \omega(x) = 1 \) i 
+\begin{equation*}
+	\int_{-1}^{1}x^k\,dx = \left[\frac{x^{k+1}}{k+1}\right]^{1}_{-1} = \frac{1}{k+1}\left(1 + (-1)^k\right). 
+\end{equation*}
+Per tant, per tot \( 0 \leq k \leq n-1 \) s'ha de verificar 
+\begin{equation*}
+	\sum_{i = 1}^n \omega_i \alpha_i^k = \frac{1}{k+1}\left(1 + (-1)^k\right). 
+\end{equation*}
+Podem escriure-ho en forma matricial com
+\begin{equation*}
+asfdjk
+\end{equation*}
+
 
 \end{document}

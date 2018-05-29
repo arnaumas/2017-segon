@@ -1,5 +1,5 @@
 OPT= -g
-EXECS=integralExp integralAbs 
+EXECS=integralExp integralAbs integralElipse
 
 all : $(EXECS)
 
@@ -12,6 +12,9 @@ integralExp : integralExp.o polinomis.o
 
 integralAbs : integralAbs.o polinomis.o
 	gcc -o integralAbs integralAbs.o polinomis.o -lm
+
+integralElipse : integralElipse.o polinomis.o
+	gcc -o integralElipse integralElipse.o polinomis.o -lm
 	
 # Objectes
 polinomis.o : polinomis.c
@@ -22,6 +25,9 @@ integralExp.o : integralExp.c
 
 integralAbs.o : integralAbs.c
 	gcc -c $(OPT) integralAbs.c 
+
+integralElipse.o : integralElipse.c
+	gcc -c $(OPT) integralElipse.c 
 
 arrels.o : arrels.c
 	gcc -c $(OPT) arrels.c 
