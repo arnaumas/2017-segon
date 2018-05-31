@@ -4,10 +4,11 @@
 #include"polinomis.h"
 #include"matrius.h"
 
-double sqexp(double);
+double f(double);
+double fCheb(double);
 
 int main() {
-	// Fem el càlcul de la integral de abs(x) entre -1 i 1 amb Gauss-Chebyshev
+	// Fem el càlcul de la longitud d'arc de l'el·lipse amb equació (x/2)^2 + (2x)^2 = 1 entre -1 i 1
 	int n;
 	double* cheb;
 	double* arrelsCheb;
@@ -94,23 +95,31 @@ int main() {
 	// Calculem la integral per Chebyshev
 	double intCheb = 0;
 	for(i = 0; i < n; i++) {
-		intCheb += coefsCheb[i] * fabs(arrelsCheb[i]) * sqrt(1 - arrelsCheb[i]*arrelsCheb[i]);	
+		intCheb += coefsCheb[i] * fCheb(arrelsCheb[i]);	
 	}
 
 	// Calculem la integral per Legendre
 	double intLeg = 0;
 	for(i = 0; i < n; i++) {
-	  intLeg += coefsLeg[i] * fabs(arrelsLeg[i]); 
-	}	
+	  intLeg += coefsLeg[i] * f(arrelsLeg[i]); 
+	}
 
 	// Calculem la integral amb la regla dels trapezis composta
 	double d = 2./(n-1);
 	for(i = 0; i < n; i++) {
-		nodesTrap[i] = fabs(-1 + i*d);	
+		nodesTrap[i] = f(-1 + i*d);	
 	}
 	double intTrap = trapezis(n, -1, 1, nodesTrap);
 
-	printf("Quadratura per Gauss-Chebyshev = %lf\n", intCheb);
 	printf("Quadratura per Gauss-Legendre = %lf\n", intLeg);
+	printf("Quadratura per Gauss-Chebyshev = %lf\n", intCheb);
 	printf("Quadratura per Trapezis = %lf\n", intTrap);
+}
+
+double f(double x) {
+	return sqrt(1 + (x*x)/(64 - 16*x*x));
+}
+
+double fCheb(double x) {
+	return sqrt(1 - x*x + (x*x - x*x*x*x)/(64 - 16*x*x));
 }

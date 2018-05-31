@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<math.h>
 #include"polinomis.h"
+#include"matrius.h"
 
 double sqexp(double);
 
@@ -12,7 +13,11 @@ int main() {
 	double* arrelsCheb;
 	double* leg;
 	double* arrelsLeg;
+	double** ACheb;
+	double* bCheb;
 	double* coefsCheb;
+	double** ALeg;
+	double* bLeg;
 	double* coefsLeg;
 	double* nodesTrap;
 	double tol = 1e-8;
@@ -32,21 +37,22 @@ int main() {
 	coefsCheb = (double *) malloc(n * sizeof(double));
 	coefsLeg = (double *) malloc(n * sizeof(double));
 	nodesTrap = (double *) malloc(n * sizeof(double));
+	ALeg = (double**) malloc(n * sizeof(double*));
+	ACheb = (double**) malloc(n * sizeof(double*));
+	bLeg = (double*) malloc(n * sizeof(double*));
+	bCheb = (double*) malloc(n * sizeof(double*));
 
+	int i,j;
+	for(i = 0; i < n; i++) {
+		ALeg[i] = (double*) malloc((n+1) * sizeof(double));	
+		ACheb[i] = (double*) malloc((n+1) * sizeof(double));	
+	}
 
-	// Calculem les arrels del polinomi de Chebyshev i els coeficients per a la integral
+	// Calculem les arrels del polinomi de Chebyshev
 	chebyshev(n, cheb);
 	trobarIntervals(cheb, n, arrelsCheb);
-	int i = 0;
 	for(i = 0; i < n; i++) {
 		arrelsCheb[i] = newton(cheb, n, arrelsCheb[i], tol);
-	}
-	coeficientsCheb(n, coefsCheb);
-
-	// Calculem la integral
-	double intCheb = 0;
-	for(i = 0; i < n; i++) {
-		intCheb += coefsCheb[i] * exp(-arrelsCheb[i] * arrelsCheb[i]);	
 	}
 
 	// Fem el mateix càlcul amb Gauss-Legendre
@@ -55,12 +61,46 @@ int main() {
 	for(i = 0; i < n; i++) {
 		arrelsLeg[i] = newton(leg, n, arrelsLeg[i], tol);
 	}
-	coeficientsLeg(n, leg, arrelsLeg, coefsLeg);
 
-	// Calculem la integral
+	// Omplim les matrius de Vandermonde i les resolem
+	for(i = 0; i < n; i++) {
+		ALeg[0][i] = 1;	
+		ACheb[0][i] = 1;	
+		for(j = 1; j < n; j++) {
+			ALeg[j][i] = ALeg[j - 1][i] * arrelsLeg[i];
+			ACheb[j][i] = ACheb[j - 1][i] * arrelsCheb[i];
+		}
+	}
+
+	bLeg[0] = 2;
+	bCheb[0] = M_PI;
+	for(i = 1; i < n; i++) {
+		if(i % 2 == 1) {
+			bCheb[i] = 0;
+			bLeg[i] = 0;
+		} else {
+			bLeg[i] = 2./(i+1);
+			bCheb[i] = (double)(i-1)/i * bCheb[i-2];
+		}
+	}
+
+	triangula(n, ALeg, bLeg);
+	triangula(n, ACheb, bCheb);
+
+	subsEndarrera(n, ALeg, bLeg, coefsLeg);
+	subsEndarrera(n, ACheb, bCheb, coefsCheb);
+
+
+	// Calculem la integral per Chebyshev
+	double intCheb = 0;
+	for(i = 0; i < n; i++) {
+		intCheb += coefsCheb[i] * exp(-arrelsCheb[i] * arrelsCheb[i]);	
+	}
+
+	// Calculem la integral per Legendre
 	double intLeg = 0;
 	for(i = 0; i < n; i++) {
-	  intLeg += coefsLeg[i] * exp(-arrelsLeg[i] * arrelsLeg[i]) / sqrt(1 - arrelsLeg[i]*arrelsLeg[i]); 
+	  intLeg += coefsLeg[i] * sqexp(arrelsLeg[i]); 
 	}
 
 	// Calculem la integral amb la regla dels trapezis composta
@@ -72,7 +112,6 @@ int main() {
 
 	printf("Quadratura per Gauss-Chebyshev = %lf\n", intCheb);
 	printf("Quadratura per Gauss-Legendre = %lf\n", intLeg);
-	printf("Quadratura per Trapezis = %lf\n", intTrap);
 }
 
 double sqexp(double x) {

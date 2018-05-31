@@ -6,7 +6,7 @@
 \usepackage{lmodern}
 \usepackage{geometry}
 \usepackage{hyperref}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[bf,sf,small,pagestyles]{titlesec}
 \usepackage[font={footnotesize, sf}, labelfont=bf]{caption} 
 \usepackage{siunitx}
@@ -84,20 +84,25 @@
 \maketitle
 
 \section{Introducció}
-Les fórmules de quadratura gaussianes apareixen per intentar millorar la precisió de les regles de quadratura de Newton-Cotes. Fent una tria precisa dels nodes es pot reduir molt la fita de l'error comès. Concretament, posem que tenim unz funció \( f \colon [a,b] \longrightarrow \R \) integrable i \( \omega \colon [a,b] \longrightarrow [0, \infty) \) una funció pes no negativa en \( [a,b] \). Aleshores aproximarem la integral \( \int_a^b \omega(x)f(x) \, dx \) per
+Les fórmules de quadratura gaussianes apareixen per intentar millorar la precisió de les regles de quadratura de Newton-Cotes. Fent una tria precisa dels nodes es pot reduir molt la fita de l'error comès. Concretament, posem que tenim una funció \( f \colon [a,b] \longrightarrow \R \) integrable i \( \omega \colon [a,b] \longrightarrow [0, \infty) \) una funció pes no negativa en \( [a,b] \). Aleshores aproximarem la integral \( \int_a^b \omega(x)f(x) \, dx \) per
 \begin{equation*}
  	\int_a^b \omega(x)f(x) \, dx \approx \sum_{i = 1}^n \omega_i f(\alpha_i). 
 \end{equation*}
-Els \( \alpha_i \) s'anomenen els nodes i els \( \omega_i \) reben el nom de pesos. L'utilitat de la quadratura de Gauss apareix per a una bona tria de nodes ---un cop triats els nodes els pesos queden determinats imposant exactitud de la fórmula per a polinomis de graus entre 0 i \( n-1 \).  
+Els \( \alpha_i \) s'anomenen els nodes i els \( \omega_i \) reben el nom de pesos. L'utilitat de la quadratura de Gauss apareix per a una bona elecció de nodes ---un cop triats, els pesos queden determinats imposant exactitud de la fórmula per a polinomis de graus entre 0 i \( n-1 \).  
 
-La funció pes \( \omega \) indueix un producte interior semidefinit positiu a l'espai de funcions definit com
+La funció pes \( \omega \) indueix un producte interior semidefinit positiu a l'espai de funcions integrables a \( [a,b] \) definit com
 \begin{equation*}
 	\inn{f}{g} \defeq \int_a^b \omega(x) f(x) g(x) \, dx.
 \end{equation*}
-Es diu que és semidefinit positiu perquè per tota \( f \) integrable no nu\l.la \( \inn{f}{f} \geq 0 \). Aleshores podem definir una noció d'ortogonalitat dient que \( f \) i \( g \) són ortogonals si i només si \( \inn{f}{g} = 0 \). Direm que una família de polinomis \( (p_n) \) és ortogonal si \( \inn{p_i}{p_j} = 0 \) per tot \( i \neq j \). Es pot demostrar que per tot pes existeix una única família ortogonal \( (p_n) \) de polinomis mònics i tals que \( \gr p_n = n \). A més, cada membre de la família \( p_n \) té \( n \) arrels diferents totes contingudes a \( [a,b] \). Precisament aquestes arrels són els nodes de la corresponent fórmula de quadratura de gauss. Els dos pesos que farem servir en aquesta pràctica són \( \omega(x) = 1 \), que dóna lloc als polinomis de Legendre, i \( \omega(x) = (1 - x^2)^{-1/2} \), que dóna lloc als polinomis de Chebyshev ---ambdós pesos estan definits a \( [-1,1] \). A partir d'ara \( L_n \) denotarà el polinomi de Legendre de grau \( n \) i \( C_n \) denotarà el polinomi de Chebyshev de grau \( n \). 
+Es diu que és semidefinit positiu perquè per tota \( f \) integrable no nu\l.la es té \( \inn{f}{f} \geq 0 \). Aleshores podem definir una noció d'ortogonalitat dient que \( f \) i \( g \) són ortogonals si i només si \( \inn{f}{g} = 0 \). Direm que una família de polinomis \( (p_n) \) és ortogonal si \( \inn{p_i}{p_j} = 0 \) per tot \( i \neq j \). Es pot demostrar que per tot pes existeix una única família ortogonal \( (p_n) \) de polinomis mònics i tals que \( \gr p_n = n \). A més, cada membre de la família \( p_n \) té \( n \) arrels simples totes contingudes a \( [a,b] \). Precisament aquestes arrels són els nodes de la corresponent fórmula de quadratura de Gauss. Els dos pesos que farem servir en aquesta pràctica són \( \omega(x) = 1 \), que dóna lloc als polinomis de Legendre, i \( \omega(x) = (1 - x^2)^{-1/2} \), que dóna lloc als polinomis de Chebyshev ---ambdós pesos estan definits a \( [-1,1] \)---. A partir d'ara \( L_n \) denotarà el polinomi de Legendre de grau \( n \) i \( C_n \) denotarà el polinomi de Chebyshev de grau \( n \). 
+
+Finalment, l'estimació de l'error per a una fórmula de quadratura de Gauss ve donada per 
+\begin{equation} \label{eq:error gauss}
+	\int_a^b \omega(x) f(x) \,dx - \sum_{i = 1}^n \omega_i f(\alpha_i) = \frac{f^{(2n)}(\xi)}{(2n)!} \inn{p_n}{p_n}
+\end{equation}
+per algun \( \xi \in (a,b) \) i sent \( (p_n) \) la família de polinomis ortogonals associada a \( \omega \). 
 
 \section{Càlcul dels nodes}
-
 Existeixen fórmules recursives per a trobar els polinomis de Legendre i de Chebyshev, concretament
 \begin{equation} \label{eq:recursio legendre}
 	L_n = \frac{2n-1}{n}xL_{n-1} - \frac{n-1}{n}L_{n-2}
@@ -125,9 +130,174 @@ Per tant, per tot \( 0 \leq k \leq n-1 \) s'ha de verificar
 	\sum_{i = 1}^n \omega_i \alpha_i^k = \frac{1}{k+1}\left(1 + (-1)^k\right). 
 \end{equation*}
 Podem escriure-ho en forma matricial com
+\begin{equation}\label{eq:pesos legendre}
+	\begin{pmatrix}
+		1 & 1 & \cdots & 1 \\
+		\alpha_1 & \alpha_2 & \cdots & \alpha_n \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\alpha_1^{n-1} & \alpha_2^{n-1} & \cdots & \alpha_n^{n-1} \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		\omega_1 \\
+		\omega_2 \\
+		\vdots \\
+		\omega_n \\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		2 \\
+		0 \\
+		\vdots \\
+		\frac{1 + (-1)^{n-1}}{n}
+	\end{pmatrix}.
+\end{equation}
+Observem que la matriu d'aquest sistema és una matriu de Vandermonde, que és invertible ja que tots els \( \alpha_i \) són diferents dos a dos.  
+
+Per a determinar les equacions per als pesos pel cas de la quadratura de Gauss-Chebyshev hem de calcular les integrals 
 \begin{equation*}
-asfdjk
+	\int_{-1}^{1}\frac{x^k}{\sqrt{1 - x^2}} \,dx
+\end{equation*}
+per tot \( 0 \leq k \leq n-1 \). Si \( k \) és senar aleshores la integral és nu\l.la ja que la funció que estem integrant és senar. Pel cas de \( k \) parell, fent la substitució \( x = \sin{\theta} \) obtenim
+\begin{equation*}
+	\int_{-1}^{1}\frac{x^k}{\sqrt{1 - x^2}} \,dx = \int_{-\pi/2}^{\pi/2} \frac{(\sin{\theta})^k}{\cos{\theta}}\cos{\theta}\,d\theta = \int_{-\pi/2}^{\pi/2} (\sin{\theta})^k \,d\theta. 
+\end{equation*}
+Podem trobar una fórmula recursiva per a aquesta integral integrant per parts:
+\begin{align*}
+	\int_{-\pi/2}^{\pi/2} (\sin{\theta})^k \,d\theta &= \int_{-\pi/2}^{\pi/2}  (\sin{\theta})^{k-1} \sin{\theta} \,d\theta \\
+																									 &= \left[-(\sin{\theta})^{k-1}\cos{\theta}\right]_{-\pi/2}^{\pi/2} + (k - 1) \int_{-\pi/2}^{\pi/2} (\cos{\theta})^2 (\sin{\theta})^{k-2} \, d\theta \\
+																									 &= (k-1)\int_{-\pi/2}^{\pi/2} (1 - (\sin{\theta})^2 )(\sin{\theta})^{k-2} \, d\theta \\ 
+																									 &= (k-1) \int_{-\pi/2}^{\pi/2} (\sin{\theta})^{k-2}\,d\theta -(k-1) \int_{-\pi/2}^{\pi/2} (\sin{\theta})^{k}\,d\theta
+\end{align*}
+i per tant 
+\begin{equation*}
+	\int_{-\pi/2}^{\pi/2} (\sin{\theta})^{k}\,d\theta = \frac{k -1}{k}\int_{-\pi/2}^{\pi/2} (\sin{\theta})^{k-2}\,d\theta .
+\end{equation*}
+Tenint en compte que 
+\begin{equation*}
+	\int_{-\pi/2}^{\pi/2} (\sin{\theta})^{0}\,d\theta = \pi
+\end{equation*}
+podem escriure l'anàleg a \cref{eq:pesos legendre} per als pesos de Chebyshev com
+\begin{equation}\label{eq:pesos chebyshev}
+	\begin{pmatrix}
+		1 & 1 & \cdots & 1 \\
+		\alpha_1 & \alpha_2 & \cdots & \alpha_n \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\alpha_1^{n-1} & \alpha_2^{n-1} & \cdots & \alpha_n^{n-1} \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		\omega_1 \\
+		\omega_2 \\
+		\vdots \\
+		\omega_n \\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\pi \\
+		0 \\
+		\vdots \\
+	\int_{-\pi/2}^{\pi/2}(\sin{\theta})^{n-1} \,d\theta
+	\end{pmatrix}.
+\end{equation}
+
+El fitxer \texttt{matrius.c} conté funcions que triangulen un sistema pel mètode de Gauss i que el resolen mitjançant el mètode de substitució endarrera. Aquestes s'apliquen per a calcular els pesos resolent els sistemes de les \cref{eq:pesos legendre,eq:pesos chebyshev}. 
+
+\section{Integrals proposades}
+Es proposa d'aplicar les quadratures de Gauss-Legendre i Gauss-Chebyshev per a calcular les integrals 
+\begin{equation*}
+\int_{-1}^1 \frac{e^{-x^2}}{\sqrt{1 - x^2}} \,dx \quad\text{i}\quad \int_{-1}^{1} \abs{x} \,dx
+\end{equation*}
+Els programes \texttt{integralExp.c} i \texttt{integralAbs.c} realitzen cada un dels càlculs per a un nombre de nodes \( n \). 
+
+\begin{table}[htb]
+	\centering \small \sffamily
+	\caption{Resultats de realitzar la primera integral amb les quadratures de Gauss-Legendre i Gauss-Chebyshev}
+	\label{tab:integral exp}
+	\begin{tabular}{cccc}
+		\toprule
+		Nombre de nodes & {Gauss-Legendre} & {Gauss-Chebyshev} \\
+		\midrule
+		2 & \color{red}1.755136 & \color{red}1.905472 \\
+		4 & \color{red}1.887430 & 2.02\color{red}5810 \\
+		6 & \color{red}1.929062 & 2.02643\color{red}7 \\
+		8 & \color{red}1.951603 & 2.026438 \\
+		10 & \color{red}1.965710 & 2.026438 \\
+		12 & \color{red}1.975357 & 2.026438 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Pel que fa a la primera integral, és clar que el més adient és fer servir la quadratura de Gauss-Chebyshev. A la \cref{tab:integral exp} es mostren els resultats obtinugts calculant-la a partir de les quadratures de Legendre i Chebyshev. Tal i com es pot apreciar ---els decimals incorrectes estan senyalats en vermell---, la precisió és molt bona fent servir Chebyshev, només amb 8 nodes ja tenim un resultat correcte fins a 6 xifres significatives. En canvi, el resultat és molt pitjor amb Legendre, ja que no obtenim un sol decimal correcte. A partir de 24 nodes, amb Legendre obtenim 2 decimals correctes. 
+
+Observant l'\cref{eq:error gauss} podem entendre aquesta diferència entre els dos mètodes. Quan fem servir Gauss-Chebyshev, la funció que integrem és només \( \exp{(-x^2)} \) ---el factor \( (1 - x^2)^{-1/2} \) queda absorbit en el pes---. Aquesta funció i les seves successives derivades estan fitades a \( [-1,1] \), de manera que la fita donada per l'\cref{eq:error gauss} és útil. Per contra, quan fem servir Legendre, la funció que integrem és \( \frac{\exp{(-x^2)}}{\sqrt{1 - x^2}} \). Aquesta funció no està fitada en \( [-1,1] \) i per tant no és ni tan sols integrable Riemann. Si que és, però, localment integrable i la integral impròpia és convergent, de manera que la integral que estem intentant avaluar té sentit. Com que ni la funció que considerem ni les seves derivades estan fitades, l'\cref{eq:error gauss} no ens és útil, cosa que és clara observant els resultats numèrics.
+
+\begin{table}[htb]
+	\centering \small \sffamily
+	\caption{Resultats de realitzar la segona integral amb les quadratures de Gauss-Legendre i Gauss-Chebyshev}
+	\label{tab:integral abs}
+	\begin{tabular}{cccc}
+		\toprule
+		Nombre de nodes & {Gauss-Legendre} & {Gauss-Chebyshev} & {Trapezis} \\
+		\midrule
+		2 & 1.\color{red}154701 & 1.\color{red}570796 & \color{red}2.000000 \\
+		4 & 1.0\color{red}42535 & 1.\color{red}110721 & 1.\color{red}111111 \\
+		6 & 1.0\color{red}19894 & 1.0\color{red}47198 & 1.0\color{red}40000 \\
+		8 & 1.0\color{red}11528 & 1.0\color{red}26172 & 1.0\color{red}20408 \\
+		10 & 1.00\color{red}7522 & 1.0\color{red}16641 & 1.0\color{red}12346 \\
+		12 & 1.00\color{red}5294 & 1.0\color{red}11515 & 1.00\color{red}8264 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+En el càlcul de la segona integral ja no obtenim resultats satisfactoris. Amb Gauss-Legendre només obtenim fins a 3 decimals correctes, i només 2 amb Gauss-Chebyshev. Si considerem l'estimació de l'error donada a l'\cref{eq:error gauss} aleshores observem que és vàlida quan \( f \in \mathcal{C}^{2n}[a,b] \), i el valor absolut no és ni tan sols derivable a \( [-1,1] \). Això explica perquè els resultats són tan dolents en aquest cas. Si considerem els resultats obtinguts aplicant la regla dels trapezis composta veiem que són molt similars als que obtenim amb Legendre. Cal mencionar que el resultat obtingut amb la regla dels trapezis és exacte quan el nombre de nodes és enter ja que aleshores 0 és un node, que no és el cas per un nombre de nodes parell. 
+
+\section{Canvi d'interval}
+Volem trobar una manera d'aprofitar les fórmules de quadratura gaussiana per a funcions definides a intervals qualssevol. Si tenim una funció \( f \colon [a,b] \longrightarrow \R \), la podem convertir a una funció amb domini \( [-1,1] \) fent ús de la transformació
+\begin{align*}
+	\tau \colon [-1,1] & \longrightarrow [a,b] \\
+	t & \longmapsto \frac{a+b}{2} + \frac{b-a}{2}t.
+\end{align*}
+Concretament, \( f \circ \tau \) té domini \( [-1,1] \). És immediat veure que \( \tau \) és bijectiva i que \( \tau(-1) = a \) i \( \tau(1) = b \). Així doncs, tenint en compte que \( \tau'(x) = \frac{b-a}{2} \), pel teorema del canvi de variable tenim
+\begin{equation*}
+	\int_a^b \omega(\tau^{-1}(x)) f(x) \,dx = \frac{b-a}{2}\int_{-1}^1 \omega(t) f(\tau(t)) \,dt,
+\end{equation*}
+on \( \omega \) pot ser el pes de Chebyshev o Legendre, i per tant podem fer servir les fórmules de quadratura gaussiana estudiades per a calcular la segona integral. 
+
+\section{Longitud d'arc d'una e\l.lipse}
+\begin{table}[htb]
+	\centering \small \sffamily
+	\caption{Resultats de realitzar la integral de la longitud d'ona de l'e\l.lipse amb les quadratures de Gauss-Legendre i Gauss-Chebyshev}
+	\label{tab:integral elipse}
+	\begin{tabular}{cccc}
+		\toprule
+		Nombre de nodes & {Gauss-Legendre} & {Gauss-Chebyshev} & {Trapezis} \\
+		\midrule
+		2 & 2.00\color{red}5674 & 2.\color{red}231337 & 2.0\color{red}20726 \\
+		4 & 2.00614\color{red}3 & 2.0\color{red}59141 & 2.00\color{red}8099 \\
+		6 & 2.006145 & 2.0\color{red}29431 & 2.006\color{red}866 \\
+		8 & 2.006145 & 2.0\color{red}19193 & 2.006\color{red}516 \\
+		10 & 2.006145 & 2.0\color{red}14481 & 2.006\color{red}370 \\
+		12 & 2.006145  & 2.0\color{red}11928 & 2.006\color{red}296 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Es proposa de calcular la longitud d'arc de l'e\l.lipse d'equació
+\begin{equation*}
+	\frac{x^2}{4} + 4y^2 = 1
+\end{equation*}
+entre \( -1 \) i \( 1 \). La longitud d'ona d'una corba definida per un gràfic \( y = f(x) \) ve donada per la integral
+\begin{equation*}
+	\int_a^b \sqrt{1 + \hbox{$f'$}(x)^2} \,dx. 
+\end{equation*}
+En el nostre cas tenim
+\begin{equation*}
+	f(x) = \frac{1}{4}\sqrt{4 - x^2}
+\end{equation*}
+i per tant la integral que hem d'avaluar és 
+\begin{equation*}
+	\int_{-1}^1\sqrt{1 + \frac{x^2}{16(4 - x^2)}} \, dx.
 \end{equation*}
 
+A la \cref{tab:integral elipse} es mostren els resultats obtinguts amb el programa \texttt{integralElipse.c}. Observem que ara el mètode que dóna millor resultat és Gauss-Legendre. Si analitzem la funció que hem d'integrar quan fem servir Gauss-Chebyshev veiem que les seves derivades no estan fitades, de manera que la fita de l'\cref{eq:error gauss} no ens serveix.  
 
 \end{document}

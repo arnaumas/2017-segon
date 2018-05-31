@@ -218,7 +218,7 @@ void coeficientsCheb(int n, double* coefs) {
 	}
 }
 
-// Calcula la integral de exp(-x^2)/sqrt(1 - x^2) a l'interval [a,b] partint-lo en n - 1 intervals
+// Calcula la integral d'una funció l'interval [a,b] partint-lo en n - 1 intervals
 double trapezis(int n, double a, double b, double* f) {
 	double h = (b - a)/(n - 1);
 
