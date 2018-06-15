@@ -1,0 +1,222 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[catalan]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[bf,sf,small,pagestyles]{titlesec}
+\usepackage[font={footnotesize, sf}, labelfont=bf]{caption} 
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[catalan]{cleveref}
+
+\hypersetup{
+	colorlinks,
+	linkcolor = {red!50!blue},
+	linktoc = page
+}
+
+\geometry{
+	a4paper,
+	right = 2.5cm,
+	left = 2.5cm,
+	bottom = 3cm,
+	top = 3cm
+}
+
+\crefname{figure}{figura}{figures}
+
+\graphicspath{{./figs/}}
+
+% Unitats
+\sisetup{
+	inter-unit-product = \ensuremath{ \, } ,
+	allow-number-unit-breaks = true,
+	detect-family = true,
+	list-final-separator = { i },
+	list-units = single
+}
+
+% Format de títols i de pàgina
+\newpagestyle{pagina}{
+	\headrule
+	\sethead*{}{}{\sffamily Arnau Mas}
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\renewpagestyle{plain}{
+	\footrule
+	\setfoot*{}{}{\sffamily \thepage}
+}
+\pagestyle{pagina}
+
+\titleformat{\section}[hang]{\bfseries \sffamily \Large}{}{0pt}{}{\thispagestyle{plain}}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\dif}[3]{\left(\frac{\partial #1}{\partial #2}\right)_#3 \! d#2 + \left(\frac{\partial #1}{\partial #3}\right)_#2 \! d#3}
+\newcommand{\dbar}{d\hspace*{-0.08em}\bar{}\hspace*{0.1em}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newcommand{\parbreak}{
+	\begin{center}
+		--- $\ast$ ---
+	\end{center} 
+}
+\makeatletter
+\newcommand*{\defeq}{\mathrel{\rlap{%
+    \raisebox{0.3ex}{$\m@th\cdot$}}%
+  \raisebox{-0.3ex}{$\m@th\cdot$}}%
+	=
+}
+\makeatother
+
+\title{\sffamily {\bfseries Entrega 4:} Lleis de la Termodinàmica}
+\author{\sffamily Arnau Mas}
+\date{\sffamily 15 de juny de 2018}
+
+\begin{document}
+\maketitle
+\section{Problema 27}
+Considerem un contenidor de parets aïllants que conté un volum \( V_i \) gas ideal amb capacitat molar \( c_V \), separat de l'exterior per un pistó de secció \( A \) de material poc conductor de la calor. A sobre del pistó s'hi posa una massa de pes \( F \) de manera que el gas es comprimeix bruscament fins arribar a una nova posició d'equilibri. Hem de calcular l'alçada que cau el pistó fins a la nova posició d'equilibri.  
+
+El gas es troba inicialment en equilibri amb l'exterior, de manera que podem escriure, fent servir la llei dels gasos ideals
+\begin{equation*}
+	p_{\text{atm}}V_i = nRT_i,
+\end{equation*}
+on \( p_{\text{atm}} \) és la pressió atmosfèrica. Quan arribem a l'equilibri tindrem
+\begin{equation*}
+	p_f V_f = nRT_f.
+\end{equation*}
+Arribarem a l'equilibri quan s'igualin les pressions, és a dir quan
+\begin{equation*}
+	p_f = p_{\text{atm}} + \frac{F}{A}.
+\end{equation*}
+Per tant la temperatura a l'equilibri serà
+\begin{equation*}
+	T_f = \frac{V_f \left(p_{\text{atm}} + \frac{F}{A}\right)}{nR} 
+\end{equation*}
+de manera que si escrivim \( V_f = V_i + \Delta V \) el canvi de temperatura serà
+\begin{equation*}
+	\Delta T = T_f - T_i = \frac{\Delta V}{nR}\left(p_{\text{atm}} + \frac{F}{A}\right).
+\end{equation*}
+
+En un gas ideal es compleix \( \Delta U = nc_V \Delta T \) de manera que
+\begin{align*}
+	\Delta U & = \frac{c_V}{R} \left(p_{\text{atm}} + \frac{F}{A}\right) \Delta V + \frac{c_V F V_i}{AR} \\
+					 & = \frac{c_V}{R} (A p_{\text{atm}} + F) \Delta h + \frac{c_V F V_i}{AR},
+\end{align*}
+on hem fet servir que \( \Delta V = A\Delta h \) amb \( \Delta h \) la distància que cau el pistó. 
+
+El treball sobre el sistema és
+\begin{equation*}
+	\Delta W = - p_{\text{ext}} \Delta V = -\left(p_{\text{atm}} + \frac{F}{A}\right) \Delta V = -(Ap_{\text{atm}} + F) \Delta h.
+\end{equation*}
+Com que el pistó es poc conductor i la compressió es brusca podem suposar que té lloc adiabàticament, de manera que per la primera llei de la termodinàmica tenim
+\begin{align*}
+	\Delta U = \Delta W & \implies \frac{c_V}{R} (A p_{\text{atm}} + F) \Delta h + \frac{c_V F V_i}{AR} = -(Ap_{\text{atm}} + F) \Delta h \\
+											& \implies \left(1 + \frac{c_V}{R}\right) \left(A p_{\text{atm}} + F \right) \Delta h = -\frac{c_V F V_i}{AR}. 
+\end{align*}
+
+Tenim que \( A = \SI{20}{cm^2} = \SI{0.002}{m^2} \), \( c_V = \SI{5}{cal.mol^{-1}.K^{-1}} = \SI{20.92}{J.mol^{-1}.K^{-1}} \), \( V_i = \SI{1}{\liter} = \SI{0.001}{m^3} \) i \( F = \SI{40}{N} \), de manera que substituïnt a l'última equació trobem \( \Delta h = \SI{-0.0589}{m} \approx \SI{-6}{cm} \). El signe ens indica que el pistó ha caigut. 
+
+Per calcular el canvi d'energia interna fem servir \( \Delta U = \Delta W = -(Ap_{\text{atm}} + F) \Delta h \) i resulta \( \Delta U = \SI{14.3}{J} \).
+
+\parbreak
+
+A continuació el gas perd calor lentament a través del pistó fins a arribar a una nova posició d'equilbri. Arribarà a l'equilibri quan la seva temperatura sigui la de l'exterior, que sabem que és \( T_{\text{ext}} = \SI{20}{\celsius} = \SI{293}{K} \). Per tant, com que coneixem l'equació d'estat dels gasos ideals podem escriure
+\begin{equation*}
+	\left(p_{\text{atm}} + \frac{F}{A}\right) V_f = nRT_{\text{ext}} = p_{\text{atm}}V_i.
+\end{equation*}
+I per tant
+\begin{equation*}
+	V_f = \frac{p_{\text{atm}}V_i}{p_{\text{atm}} + \frac{F}{A}} = \SI{8.35e-4}{m^3}.
+\end{equation*}
+Així doncs, l'alçada final és \( h_f = V_f / A = \SI{0.417}{m} = \SI{41.7}{cm} \). 
+
+Per calcular el canvi d'energia del gas en aquest procés podem fer servir que l'energia d'un gas ideal és només funció de la temperatura. Com que el gas ha retornat a la temperatura que tenia inicialment, podem concloure que ha perdut l'energia que ha guanyat durant la compressió, és a dir \( \Delta U = \SI{-14.3}{J} \). 
+
+\section{Problema 43}
+Hem de veure la versió generalitzada de la relació de Mayer, és a dir
+\begin{equation*}
+	C_P - C_V = \frac{TV\alpha^2}{\kappa_T}
+\end{equation*}
+on 
+\begin{equation} \label{eq:coef de dilatacio}
+	\alpha = \frac{1}{V} \left(\frac{\partial V}{\partial T}\right)_P
+\end{equation}
+és el coeficient de dilatació i 
+\begin{equation} \label{eq:compressibilitat}
+	\kappa_T = - \frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T
+\end{equation}
+és la compressibilitat isoterma.
+
+En general, la capacitat calorífica \( C \) d'un procés és 
+\begin{equation*}
+	C = \frac{\dbar Q}{dT}.
+\end{equation*}
+Si tenim un sistema que queda descrit pel seu volum i la temperatura podem escriure
+\begin{equation} \label{eq:dS amb T i V}
+	dS = \dif{S}{T}{V}. 
+\end{equation}
+Però per la segona llei sabem
+\begin{equation*}
+	dS = \frac{\dbar Q}{T} = \frac{C dT}{T}.
+\end{equation*}
+
+Per tant, per un procés a volum constant tenim \( dV = 0 \) i resulta
+\begin{equation*}
+	dS = \left(\dfrac{\partial S}{\partial T}\right)_V dT = \frac{C_V}{T} dT.
+\end{equation*}
+D'això deduïm 
+\begin{equation*}
+	C_V = T \left(\dfrac{\partial S}{\partial T}\right)_V.
+\end{equation*}
+
+Similarment, si escrivim
+\begin{equation*}
+	dS = \dif{S}{T}{P}
+\end{equation*}
+podem deduir que per un procés a pressió constant es verifica
+\begin{equation*}
+	C_P = T \left(\dfrac{\partial S}{\partial T}\right)_P.
+\end{equation*}
+I per tant
+\begin{equation*}
+	C_P - C_V = T \left[ \left(\dfrac{\partial S}{\partial T}\right)_P - \left(\dfrac{\partial S}{\partial T}\right)_V \right].
+\end{equation*}
+
+Podem reescriure \( \left(\dfrac{\partial S}{\partial T}\right)_P \) si fem servir
+\begin{equation*}
+	dV = \dif{V}{T}{P}
+\end{equation*}
+i substituïm a l'\cref{eq:dS amb T i V}. Així resulta
+\begin{equation*}
+	dS = \left[ \left(\dfrac{\partial S}{\partial T}\right)_V + \left(\dfrac{\partial S}{\partial V}\right)_T \left(\dfrac{\partial V}{\partial T}\right)_P \right] dT + \left(\dfrac{\partial S}{\partial V}\right)_T \left(\dfrac{\partial V}{\partial P}\right)_T \! dP.
+\end{equation*}
+I d'aquí deduïm
+\begin{equation*}
+	\left(\dfrac{\partial S}{\partial T}\right)_P = \left(\dfrac{\partial S}{\partial T}\right)_V + \left(\dfrac{\partial S}{\partial V}\right)_T \left(\dfrac{\partial V}{\partial T}\right)_P.
+\end{equation*}
+Per tant, fent servir la definició del coeficient de dilatació, \cref{eq:coef de dilatacio}, 
+\begin{equation*}
+	C_P - C_V = T\left(\dfrac{\partial S}{\partial V}\right)_T \left(\dfrac{\partial V}{\partial T}\right)_P = TV\alpha \left(\dfrac{\partial S}{\partial V}\right)_T.
+\end{equation*}
+
+Només hem de calcular \( \left(\dfrac{\partial S}{\partial V}\right)_T \). Fent servir una relació de Maxwell i la regla de la cadena obtenim 
+\begin{equation*}
+ 	\left(\dfrac{\partial S}{\partial V}\right)_T = \left(\dfrac{\partial P}{\partial T}\right)_V = - \left(\dfrac{\partial P}{\partial V}\right)_T \left(\dfrac{\partial V}{\partial T}\right)_P = \frac{V \alpha}{V \kappa_T}
+\end{equation*}
+on hem fet servir les definicions del coeficient de dilatació i de la compressibilitat, \cref{eq:coef de dilatacio,eq:compressibilitat}. I per tant obtenim 
+\begin{equation*}
+	C_P - C_V = \frac{TV \alpha^2}{\kappa_T},
+\end{equation*}
+com voliem.
+
+\end{document}
